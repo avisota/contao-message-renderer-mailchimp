@@ -16,8 +16,8 @@
 namespace Avisota\Contao\RendererMailChimp\DataContainer;
 
 use Avisota\Contao\Entity\SalutationGroup;
-use Avisota\Contao\Event\CollectStylesheetsEvent;
-use Avisota\Contao\Event\CollectSubscriptionListsEvent;
+use Avisota\Contao\Core\Event\CollectStylesheetsEvent;
+use Avisota\Contao\Core\Event\CollectSubscriptionListsEvent;
 use Contao\Doctrine\ORM\EntityHelper;
 use ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateOptionsEvent;
 use DcGeneral\DC_General;

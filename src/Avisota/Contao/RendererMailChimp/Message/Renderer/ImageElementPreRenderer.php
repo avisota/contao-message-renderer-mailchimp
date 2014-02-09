@@ -17,7 +17,7 @@
 namespace Avisota\Contao\RendererMailChimp\Message\Renderer;
 
 use Avisota\Contao\Entity\MessageContent;
-use Avisota\Contao\Message\Renderer;
+use Avisota\Contao\Core\Message\Renderer;
 use Avisota\Recipient\RecipientInterface;
 use Contao\Doctrine\ORM\Entity;
 

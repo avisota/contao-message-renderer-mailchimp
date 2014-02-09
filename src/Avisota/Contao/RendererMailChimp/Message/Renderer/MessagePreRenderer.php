@@ -17,11 +17,11 @@ namespace Avisota\Contao\RendererMailChimp\Message\Renderer;
 
 use Avisota\Contao\Entity\Message;
 use Avisota\Contao\Entity\MessageContent;
-use Avisota\Contao\Event\InitializeMessageRendererEvent;
-use Avisota\Contao\Event\RenderMessageHeadersEvent;
-use Avisota\Contao\Message\Renderer\MessageContentPreRendererChain;
-use Avisota\Contao\Message\Renderer\MessagePreRendererInterface;
-use Avisota\Contao\Message\MutablePreRenderedMessageTemplate;
+use Avisota\Contao\Core\Event\InitializeMessageRendererEvent;
+use Avisota\Contao\Core\Event\RenderMessageHeadersEvent;
+use Avisota\Contao\Core\Message\Renderer\MessageContentPreRendererChain;
+use Avisota\Contao\Core\Message\Renderer\MessagePreRendererInterface;
+use Avisota\Contao\Core\Message\MutablePreRenderedMessageTemplate;
 use Avisota\Recipient\RecipientInterface;
 use Contao\Doctrine\ORM\EntityHelper;
 
@@ -43,7 +43,7 @@ class MessagePreRenderer implements MessagePreRendererInterface
 	}
 
 	/**
-	 * @return \Avisota\Contao\Message\Renderer\MessageContentRendererChain
+	 * @return \Avisota\Contao\Core\Message\Renderer\MessageContentRendererChain
 	 */
 	public function getContentRenderer()
 	{

@@ -22,12 +22,12 @@ $GLOBALS['AVISOTA_MESSAGE_RENDERER']['mailChimp'] = 'Avisota\Contao\RendererMail
 /**
  * MailChimp content renderer
  */
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\HeadlineElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\TextElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\ListElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\TableElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\HyperlinkElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Message\Renderer\MailChimp\ImageElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\HeadlineElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\TextElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\ListElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\TableElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\HyperlinkElementPreRenderer';
+$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\ImageElementPreRenderer';
 
 
 /**
