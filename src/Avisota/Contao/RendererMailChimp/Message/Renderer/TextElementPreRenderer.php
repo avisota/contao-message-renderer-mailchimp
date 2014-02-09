@@ -8,7 +8,7 @@
  *
  * @copyright  bit3 UG 2013
  * @author     Tristan Lins <tristan.lins@bit3.de>
- * @package    avisota
+ * @package    avisota/contao-renderer-mailchimp
  * @license    LGPL-3.0+
  * @filesource
  */
@@ -28,7 +28,7 @@ use Contao\Doctrine\ORM\Entity;
  *
  * @copyright  bit3 UG 2013
  * @author     Tristan Lins <tristan.lins@bit3.de>
- * @package    Avisota
+ * @package    avisota/contao-renderer-mailchimp
  */
 class TextElementPreRenderer implements Renderer\MessageContentPreRendererInterface
 {
