@@ -16,12 +16,8 @@
 namespace Avisota\Contao\RendererMailChimp\DataContainer;
 
 use Avisota\Contao\Entity\SalutationGroup;
-use Avisota\Contao\Core\Event\CollectStylesheetsEvent;
-use Avisota\Contao\Core\Event\CollectSubscriptionListsEvent;
-use Contao\Doctrine\ORM\EntityHelper;
-use ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateOptionsEvent;
+use ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEvent;
 use DcGeneral\DC_General;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class OptionsBuilder extends \Controller implements EventSubscriberInterface
