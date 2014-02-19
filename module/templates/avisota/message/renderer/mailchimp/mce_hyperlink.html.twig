@@ -1,5 +1,5 @@
 {% extends 'avisota/message/renderer/mailchimp/mce_container.html.twig' %}
-{% import "avisota/message/renderer/mailchimp/mce_macros.html.twig" as mce %}
+{% import "avisota/message/renderer/default/mce_macros.html.twig" as mce %}
 
 {% set headline = headline|deserialize(true) %}
 {% set hl = headline.unit ? headline.unit : 'h1' %}

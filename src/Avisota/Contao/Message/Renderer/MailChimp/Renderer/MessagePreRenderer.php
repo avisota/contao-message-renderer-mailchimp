@@ -13,17 +13,18 @@
  * @filesource
  */
 
-namespace Avisota\Contao\RendererMailChimp\Message\Renderer;
+namespace Avisota\Contao\Message\Renderer\MailChimp\Message\Renderer;
 
 use Avisota\Contao\Entity\Message;
 use Avisota\Contao\Entity\MessageContent;
-use Avisota\Contao\Core\Event\InitializeMessageRendererEvent;
-use Avisota\Contao\Core\Event\RenderMessageHeadersEvent;
-use Avisota\Contao\Core\Message\Renderer\MessageContentPreRendererChain;
-use Avisota\Contao\Core\Message\Renderer\MessagePreRendererInterface;
 use Avisota\Contao\Core\Message\MutablePreRenderedMessageTemplate;
-use Avisota\Recipient\RecipientInterface;
+use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
+use Avisota\Contao\Message\Core\Event\InitializeMessageRendererEvent;
+use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
+use Avisota\Contao\Message\Core\Renderer\MessageContentPreRendererChain;
+use Avisota\Contao\Message\Core\Renderer\MessagePreRendererInterface;
 use Contao\Doctrine\ORM\EntityHelper;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class MessagePreRenderer implements MessagePreRendererInterface
 {
@@ -39,11 +40,11 @@ class MessagePreRenderer implements MessagePreRendererInterface
 	{
 		/** @var EventDispatcher $eventDispatcher */
 		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
-		$eventDispatcher->dispatch(InitializeMessageRendererEvent::NAME, new InitializeMessageRendererEvent($this));
+		$eventDispatcher->dispatch(AvisotaMessageEvents::INITIALIZE_MESSAGE_RENDERER, new InitializeMessageRendererEvent($this));
 	}
 
 	/**
-	 * @return \Avisota\Contao\Core\Message\Renderer\MessageContentRendererChain
+	 * @return MessageContentPreRendererChain
 	 */
 	public function getContentRenderer()
 	{
@@ -294,7 +295,7 @@ class MessagePreRenderer implements MessagePreRendererInterface
 				$headers['styles'] = $styles;
 			}
 
-			$eventDispatcher->dispatch(RenderMessageHeadersEvent::NAME, new RenderMessageHeadersEvent($this, $message, $headers));
+			$eventDispatcher->dispatch(AvisotaMessageEvents::RENDER_MESSAGE_HEADERS, new RenderMessageHeadersEvent($this, $message, $headers));
 
 			$headElements = $xpath->query('/html/head', $document->documentElement);
 			$headElement  = $headElements->item(0);
@@ -384,7 +385,7 @@ class MessagePreRenderer implements MessagePreRendererInterface
 	 */
 	public function canRenderMessage(Message $message)
 	{
-		return $message->getLayout()->getType() == 'mailChimp';
+		return TL_MODE != 'BE' && $message->getLayout()->getType() == 'mailChimp';
 	}
 
 	/**
@@ -392,6 +393,6 @@ class MessagePreRenderer implements MessagePreRendererInterface
 	 */
 	public function canRenderContent(MessageContent $content)
 	{
-		return $this->getContentRenderer()->canRenderContent($content);
+		return TL_MODE != 'BE' && $this->getContentRenderer()->canRenderContent($content);
 	}
 }

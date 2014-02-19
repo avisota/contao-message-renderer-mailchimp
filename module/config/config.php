@@ -14,21 +14,14 @@
  */
 
 /**
- * Message renderer
+ * Events
  */
-$GLOBALS['AVISOTA_MESSAGE_RENDERER']['mailChimp'] = 'Avisota\Contao\RendererMailChimp\Message\Renderer\MessagePreRenderer';
-
+$GLOBALS['TL_EVENT_SUBSCRIBERS']['avisota-renderer-mailchimp-datacontainer-options-builder'] = 'Avisota\Contao\Message\Renderer\MailChimp\DataContainer\OptionsBuilder';
 
 /**
- * MailChimp content renderer
+ * Message renderer
  */
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\HeadlineElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\TextElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\ListElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\TableElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\HyperlinkElementPreRenderer';
-$GLOBALS['AVISOTA_CONTENT_RENDERER']['mailChimp'][] = 'Avisota\Contao\Core\Message\Renderer\MailChimp\ImageElementPreRenderer';
-
+$GLOBALS['AVISOTA_MESSAGE_RENDERER'][]  = 'mailChimp';
 
 /**
  * MailChimp templates
@@ -54,17 +47,17 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
 			'preferedElements' => array('image'),
 		),
-		'col1'       => array(
+		'left'       => array(
 			'xpath'       => '//table[@id="templateBody"]//td[@class="leftColumnContent"]',
 			'wrapContent' => '<table border="0" cellpadding="20" cellspacing="0" width="100%"></table>',
 			'wrapRow'     => '<tr><td valign="top"></td></tr>',
 		),
-		'col2'       => array(
+		'main'       => array(
 			'xpath'       => '//table[@id="templateBody"]//td[@class="centerColumnContent"]',
 			'wrapContent' => '<table border="0" cellpadding="20" cellspacing="0" width="100%"></table>',
 			'wrapRow'     => '<tr><td valign="top"></td></tr>',
 		),
-		'col3'       => array(
+		'right'      => array(
 			'xpath'       => '//table[@id="templateBody"]//td[@class="rightColumnContent"]',
 			'wrapContent' => '<table border="0" cellpadding="20" cellspacing="0" width="100%"></table>',
 			'wrapRow'     => '<tr><td valign="top"></td></tr>',
@@ -82,9 +75,9 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
 		),
 		array(
 			'cells' => array(
-				'col1' => array(),
-				'col2' => array(),
-				'col3' => array(),
+				'left'  => array(),
+				'main'  => array(),
+				'right' => array(),
 			),
 		),
 		array(
@@ -107,7 +100,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
 			'preferedElements' => array('image'),
 		),
-		'col1'     => array(
+		'left'     => array(
 			'xpath' => '//table[@id="templateBody"]//td[@class="bodyContent"]',
 		),
 		'linkUrl'  => array(
@@ -131,9 +124,9 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
 		),
 		array(
 			'cells' => array(
-				'col1' => array(),
-				'col2' => array(),
-				'col3' => array(),
+				'left'  => array(),
+				'main'  => array(),
+				'right' => array(),
 			),
 		),
 		array(

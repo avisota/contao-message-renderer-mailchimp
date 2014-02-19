@@ -1,5 +1,5 @@
 {
-	"name":"avisota/contao-renderer-mailchimp",
+	"name":"avisota/contao-message-renderer-mailchimp",
 	"description":"Renderer that use MailChimp templates.",
 	"keywords":["avisota", "email", "mail", "newsletter", "marketing"],
 	"type":"contao-module",
@@ -35,7 +35,7 @@
 	"prefer-stable": true,
 	"autoload":{
 		"psr-0":{
-			"Avisota\\Contao\\RendererMailChimp": "src/"
+			"Avisota\\Contao\\Message\\Renderer\\MailChimp": "src/"
 		}
 	},
 	"extra": {
