@@ -16,7 +16,8 @@
 /**
  * Events
  */
-$GLOBALS['TL_EVENT_SUBSCRIBERS']['avisota-renderer-mailchimp-datacontainer-options-builder'] = 'Avisota\Contao\Message\Renderer\MailChimp\DataContainer\OptionsBuilder';
+$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Avisota\Contao\Message\Renderer\MailChimp\DataContainer\OptionsBuilder';
+$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Avisota\Contao\Message\Renderer\MailChimp\Renderer\MailChimpRenderer';
 
 /**
  * Message renderer
@@ -28,7 +29,7 @@ $GLOBALS['AVISOTA_MESSAGE_RENDERER'][]  = 'mailChimp';
  */
 $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array(
 	'mode'      => 'html',
-	'template'  => 'system/modules/avisota/blueprints/templates/3col-basic3column.html',
+	'template'  => 'system/modules/avisota-message-renderer-mailchimp/blueprints/templates/3col-basic3column.html',
 	'cells'     => array(
 		'title'      => array(
 			'xpath'   => '/html/head/meta[@property="og:title"]/@content|/html/head/title',
@@ -90,7 +91,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
 
 $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = array(
 	'mode'      => 'html',
-	'template'  => 'system/modules/avisota/blueprints/templates/transactional_basic.html',
+	'template'  => 'system/modules/avisota-message-renderer-mailchimp/blueprints/templates/transactional_basic.html',
 	'cells'     => array(
 		'title'    => array(
 			'xpath'   => '/html/head/meta[@property="og:title"]/@content|/html/head/title',

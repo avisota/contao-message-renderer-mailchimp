@@ -14,7 +14,7 @@
  */
 
 
-namespace Avisota\Contao\Message\Renderer\MailChimp\Message\Renderer;
+namespace Avisota\Contao\Message\Renderer\MailChimp\Renderer;
 
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Core\Message\Renderer;
@@ -65,13 +65,16 @@ class MailChimpRenderer implements EventSubscriberInterface
 		}
 
 		$message = $event->getMessage();
-		$layout  = $message->getLayout();
+		$layout  = $event->getLayout();
 
 		if ($layout->getType() != 'mailChimp') {
 			return;
 		}
 
-		throw new \RuntimeException('TODO');
+		$blueprintRenderer = new BlueprintRenderer();
+		$preRenderedMessageTemplate = $blueprintRenderer->render($message, $layout);
+
+		$event->setPreRenderedMessageTemplate($preRenderedMessageTemplate);
 	}
 
 	/**
@@ -87,6 +90,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 		$content = $event->getMessageContent();
 
 		if ($content->getType() != 'headline' || $event->getRenderedContent()) {
+			return;
+		}
+
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
 			return;
 		}
 
@@ -117,6 +126,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 			return;
 		}
 
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
+			return;
+		}
+
 		/** @var EntityAccessor $entityAccessor */
 		$entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
 
@@ -141,6 +156,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 		$content = $event->getMessageContent();
 
 		if ($content->getType() != 'image' || $event->getRenderedContent()) {
+			return;
+		}
+
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
 			return;
 		}
 
@@ -171,6 +192,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 			return;
 		}
 
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
+			return;
+		}
+
 		/** @var EntityAccessor $entityAccessor */
 		$entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
 
@@ -198,6 +225,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 			return;
 		}
 
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
+			return;
+		}
+
 		/** @var EntityAccessor $entityAccessor */
 		$entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
 
@@ -222,6 +255,12 @@ class MailChimpRenderer implements EventSubscriberInterface
 		$content = $event->getMessageContent();
 
 		if ($content->getType() != 'text' || $event->getRenderedContent()) {
+			return;
+		}
+
+		$layout = $event->getLayout();
+
+		if ($layout->getType() != 'mailChimp') {
 			return;
 		}
 

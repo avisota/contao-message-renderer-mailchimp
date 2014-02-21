@@ -41,7 +41,7 @@
 	"extra": {
 		"contao": {
 			"sources": {
-				"module": "system/modules/avisota-renderer-mailchimp"
+				"module": "system/modules/avisota-message-renderer-mailchimp"
 			},
 			"transifex": {
 				"project": "avisota-contao",
