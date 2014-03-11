@@ -45,7 +45,7 @@
 			},
 			"transifex": {
 				"project": "avisota-contao",
-				"prefix": "contao-renderer-mailchimp-",
+				"prefix": "contao-message-renderer-mailchimp-",
 				"languages_cto": "module/languages",
 				"languages_tx": ".tx"
 			}
