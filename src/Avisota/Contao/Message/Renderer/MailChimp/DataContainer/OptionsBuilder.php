@@ -16,9 +16,7 @@
 namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 
 use Avisota\Contao\Entity\Layout;
-use Avisota\Contao\Entity\Message;
 use Avisota\Contao\Entity\MessageContent;
-use Avisota\Contao\Entity\SalutationGroup;
 use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
