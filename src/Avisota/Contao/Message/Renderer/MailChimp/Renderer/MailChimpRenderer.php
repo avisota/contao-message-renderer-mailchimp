@@ -21,7 +21,6 @@ use Avisota\Contao\Core\Message\Renderer;
 use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
 use Avisota\Contao\Message\Core\Event\RenderMessageContentEvent;
 use Avisota\Contao\Message\Core\Event\RenderMessageEvent;
-use Avisota\Contao\Message\Core\Renderer\MessageContentPreRendererInterface;
 use Avisota\Recipient\RecipientInterface;
 use Contao\Doctrine\ORM\Entity;
 use Contao\Doctrine\ORM\EntityAccessor;
@@ -72,7 +71,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 		}
 
 		$blueprintRenderer = new BlueprintRenderer();
-		$preRenderedMessageTemplate = $blueprintRenderer->render($message, $layout);
+		$preRenderedMessageTemplate = $blueprintRenderer->renderMessage($message, $layout);
 
 		$event->setPreRenderedMessageTemplate($preRenderedMessageTemplate);
 	}

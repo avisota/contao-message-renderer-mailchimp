@@ -17,20 +17,26 @@ namespace Avisota\Contao\Message\Renderer\MailChimp\Renderer;
 
 use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\Message;
+use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
 use Avisota\Contao\Message\Core\Event\RenderMessageContentEvent;
 use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
+use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
 use Contao\Doctrine\ORM\EntityHelper;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class BlueprintRenderer
+class BlueprintRenderer implements MessageRendererInterface
 {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function render(Message $message, Layout $layout)
+	public function renderMessage(Message $message, Layout $layout = null)
 	{
+		if (!$layout || $layout->getType() != 'mailChimp') {
+			return null;
+		}
+
 		try {
 			$libxmlUseInternalErrors = libxml_use_internal_errors(true);
 
@@ -54,7 +60,7 @@ class BlueprintRenderer
 					$cellContents[$cellName] = array($cellConfig['content']);
 				}
 				else {
-					$cellContents[$cellName] = $this->renderCell($eventDispatcher, $message, $layout, $cellName);
+					$cellContents[$cellName] = $this->renderCell($message, $cellName, $layout);
 				}
 			}
 
@@ -314,8 +320,12 @@ class BlueprintRenderer
 	 *
 	 * @return \StringBuilder
 	 */
-	protected function renderCell(EventDispatcher $eventDispatcher, Message $message, Layout $layout, $cell)
+	public function renderCell(Message $message, $cell, Layout $layout = null)
 	{
+		if (!$layout || $layout->getType() != 'mailChimp') {
+			return null;
+		}
+
 		$entityHelper = EntityHelper::getEntityManager();
 		$queryBuilder = $entityHelper->createQueryBuilder();
 		$contents     = $queryBuilder
@@ -332,13 +342,32 @@ class BlueprintRenderer
 		$elementContents = new \ArrayObject();
 
 		foreach ($contents as $content) {
-			$event = new RenderMessageContentEvent($content);
-
-			$eventDispatcher->dispatch(AvisotaMessageEvents::RENDER_MESSAGE_CONTENT, $event);
-
-			$elementContents->append($event->getRenderedContent());
+			$elementContents->append($this->renderContent($content, $layout));
 		}
 
 		return $elementContents;
+	}
+
+	/**
+	 * Render a single message content element.
+	 *
+	 * @param MessageContent $messageContent
+	 *
+	 * @return string
+	 */
+	public function renderContent(MessageContent $messageContent, Layout $layout = null)
+	{
+		if (!$layout || $layout->getType() != 'mailChimp') {
+			return null;
+		}
+
+		/** @var EventDispatcher $eventDispatcher */
+		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
+
+		$event = new RenderMessageContentEvent($messageContent, $layout);
+
+		$eventDispatcher->dispatch(AvisotaMessageEvents::RENDER_MESSAGE_CONTENT, $event);
+
+		return $event->getRenderedContent();
 	}
 }
