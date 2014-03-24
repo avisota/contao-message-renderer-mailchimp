@@ -294,6 +294,11 @@ class BlueprintRenderer implements MessageRendererInterface
 			}
 
 			$html = $document->saveHTML();
+			$html = str_replace(
+				array('%7B', '%7D', '%20'),
+				array('{',   '}',   ' '),
+				$html
+			);
 
 			$response = new MutablePreRenderedMessageTemplate(
 				$message,
