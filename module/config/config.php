@@ -106,7 +106,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
 		),
 		'linkUrl'  => array(
 			'xpath'   => '//table[@id="templateBody"]//td[@class="templateButtonContent"]//a/@href',
-			'content' => '{{ if link.url }}##link.url##{{ else }}## "##link.url##" ##{{ endif }}',
+			'content' => '{{ if link.url }}##link.url##{{ else }}## \'##link.url##\' ##{{ endif }}',
 		),
 		'linkText' => array(
 			'xpath'   => '//table[@id="templateBody"]//td[@class="templateButtonContent"]//a',
