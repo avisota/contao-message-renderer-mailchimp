@@ -288,7 +288,7 @@ class BlueprintRenderer implements MessageRendererInterface
 			for ($i = 0; $i < $links->length; $i++) {
 				/** @var \DOMAttr $link */
 				$link = $links->item($i);
-				if (!preg_match('~^(\w+:|#[^#])~', $link->value)) {
+				if (!preg_match('~(^\w+:|^#[^#]|##)~', $link->value)) {
 					$link->value = $baseUrl . $link->value;
 				}
 			}
