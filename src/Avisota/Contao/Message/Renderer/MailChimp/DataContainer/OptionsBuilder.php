@@ -109,7 +109,7 @@ class OptionsBuilder implements EventSubscriberInterface
 		$message = $content->getMessage();
 		$layout  = $message->getLayout();
 
-		if ($layout->getType() != 'mailChimp') {
+		if (!$layout || $layout->getType() != 'mailChimp') {
 			return;
 		}
 
@@ -173,6 +173,10 @@ class OptionsBuilder implements EventSubscriberInterface
 		$content = $model->getEntity();
 		$message = $content->getMessage();
 		$layout  = $message->getLayout();
+
+		if (!$layout) {
+			return $options;
+		}
 
 		list($templateGroup, $templateName) = explode(':', $layout->getMailchimpTemplate());
 		$mailChimpTemplate = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$templateGroup][$templateName];
