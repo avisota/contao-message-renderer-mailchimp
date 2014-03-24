@@ -106,11 +106,11 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
 		),
 		'linkUrl'  => array(
 			'xpath'   => '//table[@id="templateBody"]//td[@class="templateButtonContent"]//a/@href',
-			'content' => '##link.url##',
+			'content' => '{{ if link.url }}##link.url##{{ else }}## "##link.url##" ##{{ endif }}',
 		),
 		'linkText' => array(
 			'xpath'   => '//table[@id="templateBody"]//td[@class="templateButtonContent"]//a',
-			'content' => '##link.text##',
+			'content' => '{{ if link.text }}##link.text##{{ else }}## "##link.text##" ##{{ endif }}',
 		),
 		'footer'   => array(
 			'xpath'            => '//table[@id="templateFooter"]//td[@class="footerContent"]',
