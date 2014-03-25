@@ -8,11 +8,9 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2014-03-11T16:02:10+01:00
+ * last-updated: 2014-03-25T14:16:01+01:00
  */
 
-
-$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimp']              = 'MailChimp';
 $GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate']['0'] = 'Template da Mailchimp';
 $GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate']['1'] = 'Tscherna la structura da basa ed il template per quest layout.';
 
