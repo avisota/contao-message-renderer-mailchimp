@@ -17,7 +17,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate']             = array(
+$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate'] = array(
 	'Mailchimp template',
 	'Chose the basic structure and template for this layout.'
 );
@@ -26,4 +26,4 @@ $GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate']             = arr
 /**
  * Reference
  */
-$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimp']    = 'MailChimp';
+$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimp'] = 'MailChimp Blueprints';
