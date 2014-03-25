@@ -21,8 +21,9 @@ use ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEventCallba
  */
 $GLOBALS['TL_DCA']['orm_avisota_layout']['metapalettes']['mailChimp'] = array
 (
-	'layout'   => array('type', 'title', 'alias', 'preview'),
-	'template' => array('mailChimpTemplate', 'allowedCellContents', 'clearStyles', 'stylesheets'),
+	'layout'    => array('type', 'title', 'alias', 'preview'),
+	'template'  => array('mailChimpTemplate', 'clearStyles', 'stylesheets'),
+	'structure' => array('allowedCellContents'),
 );
 
 $GLOBALS['TL_DCA']['orm_avisota_layout']['fields']['mailChimpTemplate'] = array
