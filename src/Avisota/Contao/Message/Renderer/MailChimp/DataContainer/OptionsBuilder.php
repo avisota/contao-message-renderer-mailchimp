@@ -23,6 +23,7 @@ use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
 use ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEvent;
 use ContaoCommunityAlliance\DcGeneral\Contao\Compatibility\DcCompat;
 use ContaoCommunityAlliance\DcGeneral\DC_General;
+use ContaoCommunityAlliance\DcGeneral\DcGeneral;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -35,7 +36,8 @@ class OptionsBuilder implements EventSubscriberInterface
 	{
 		return array(
 			// Layout related options
-			'avisota.create-mailchimp-template-options' => 'createMailChimpTemplateOptions',
+			'avisota.create-mailchimp-template-options'   => 'createMailChimpTemplateOptions',
+			'avisota.create-content-type-options'         => 'createContentTypeOptions',
 			// Message content related options
 			'avisota.create-message-content-type-options' => 'createCellContentTypeOptions',
 			'avisota.create-message-content-cell-options' => 'createMessageContentCellOptions',
@@ -80,6 +82,44 @@ class OptionsBuilder implements EventSubscriberInterface
 		return $options;
 	}
 
+	public function createContentTypeOptions(CreateOptionsEvent $event)
+	{
+		/** @var DcCompat $dc */
+		$dc = $event->getDataContainer();
+		/** @var EntityModel $model */
+		$model = $dc->getModel();
+		/** @var Layout $layout */
+		$layout = $model->getEntity();
+
+		if (!$layout || $layout->getType() != 'mailChimp') {
+			return;
+		}
+
+		$options = $event->getOptions();
+
+		$allTypes = $options->getArrayCopy();
+		$options->exchangeArray(array());
+
+		list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
+		if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
+			$config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
+
+			foreach ($config['cells'] as $cellName => $cellConfig) {
+				if (!isset($cellConfig['content'])) {
+					if (!isset($options[$cellName])) {
+						$options[$cellName] = array();
+					}
+
+					foreach ($allTypes as $elements) {
+						foreach ($elements as $elementType => $elementLabel) {
+							$options[$cellName][$cellName . ':' . $elementType] = $elementLabel;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * @param Layout $layout
 	 */
@@ -88,7 +128,7 @@ class OptionsBuilder implements EventSubscriberInterface
 		/** @var DcCompat $dc */
 		$dc = $event->getDataContainer();
 		/** @var EntityModel $model */
-		$model = $dc->getModel();
+		$model  = $dc->getModel();
 		$entity = $model->getEntity();
 
 		if (!$entity instanceof MessageContent) {
@@ -102,7 +142,8 @@ class OptionsBuilder implements EventSubscriberInterface
 	}
 
 	/**
-	 * @param DC_General|\Avisota\Contao\Entity\Layout $layout
+	 * @param array|\ArrayObject $options
+	 * @param MessageContent     $content
 	 */
 	public function getCellContentTypeOptions($options = array(), MessageContent $content)
 	{
@@ -110,7 +151,7 @@ class OptionsBuilder implements EventSubscriberInterface
 		$layout  = $message->getLayout();
 
 		if (!$layout || $layout->getType() != 'mailChimp') {
-			return;
+			return $options;
 		}
 
 		$allowedTypes = array();
@@ -119,9 +160,14 @@ class OptionsBuilder implements EventSubscriberInterface
 		if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
 			$config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
 
-			if (isset($config['cells'])) {
-				foreach ($config['cells'] as $cellName => $cellConfig) {
-					if (!isset($cellConfig['content']) && $cellName == $content->getCell()) {
+			if (isset($config['cells'][$content->getCell()])) {
+				$cellConfig = $config['cells'][$content->getCell()];
+
+				if (!isset($cellConfig['content'])) {
+					if (isset($cellConfig['preferredElements'])) {
+						$allowedTypes = $cellConfig['preferredElements'];
+					}
+					else {
 						foreach ($GLOBALS['TL_MCE'] as $elements) {
 							foreach ($elements as $elementType) {
 								$allowedTypes[] = $elementType;
@@ -132,11 +178,18 @@ class OptionsBuilder implements EventSubscriberInterface
 			}
 		}
 
-		foreach ($options as $group => $values) {
+		foreach ($layout->getAllowedCellContents() as $allowedCellContentType) {
+			list($cell, $elementType) = explode(':', $allowedCellContentType);
+			if ($cell == $content->getCell()) {
+				$allowedTypes[] = $elementType;
+			}
+		}
+
+		foreach ($options as $group => &$values) {
 			if (is_array($values)) {
 				foreach ($values as $key => $value) {
 					if (!in_array($key, $allowedTypes)) {
-						unset($options[$group][$key]);
+						unset($values[$key]);
 					}
 				}
 			}
@@ -174,7 +227,7 @@ class OptionsBuilder implements EventSubscriberInterface
 		$message = $content->getMessage();
 		$layout  = $message->getLayout();
 
-		if (!$layout) {
+		if (!$layout || $layout->getType() != 'mailChimp') {
 			return $options;
 		}
 
