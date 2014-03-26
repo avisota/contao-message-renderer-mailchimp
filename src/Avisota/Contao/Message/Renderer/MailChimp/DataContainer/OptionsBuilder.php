@@ -243,7 +243,14 @@ class OptionsBuilder implements EventSubscriberInterface
 
 		foreach ($cells as $cellName => $cell) {
 			if (!isset($cell['content'])) {
-				$options[] = $cellName;
+				if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
+					$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+				}
+				else {
+					$label = $cellName;
+				}
+
+				$options[$cellName] = $label;
 			}
 		}
 
