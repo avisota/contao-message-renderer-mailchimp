@@ -42,7 +42,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -85,7 +85,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-leftsidebar'] = ar
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -133,7 +133,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-rightsidebar'] = a
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -181,7 +181,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-2-1'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -224,7 +224,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-basic2column'] = array
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -262,7 +262,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -310,7 +310,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-asym'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -358,7 +358,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-leftsidebar'] = ar
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -411,7 +411,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-rightsidebar'] = a
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -464,7 +464,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -512,7 +512,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1-asym'] = array(
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -560,7 +560,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -603,7 +603,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column-asym'] = 
 		),
 		'viewonline' => array(
 			'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-			'content' => '##view_online_link##',
+			'content' => '{{ if view_online_link is defined and view_online_link|length > 0 }}##view_online_link##{{ endif }}',
 		),
 		'header'     => array(
 			'xpath'            => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
