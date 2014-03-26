@@ -154,7 +154,7 @@ class OptionsBuilder implements EventSubscriberInterface
 			return $options;
 		}
 
-		$allowedTypes = array();
+		$allowedTypes = array($content->getType());
 
 		list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
 		if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
