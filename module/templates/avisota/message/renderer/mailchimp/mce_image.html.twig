@@ -13,7 +13,7 @@
 			</tr>
 		{% endif %}
 		<tr>
-			<td>{{ mce.image(singleSRC, { 'alt': alt, 'size': size, 'margin': imagemargin, 'url': imageUrl, 'caption': caption }) }}</td>
+			<td>{{ mce.image(imageSource, { 'alt': imageAlt, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}</td>
 		</tr>
 	{% endspaceless %}
 {% endblock %}
