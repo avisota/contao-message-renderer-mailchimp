@@ -306,6 +306,13 @@ class BlueprintRenderer implements MessageRendererInterface
 				},
 				$html
 			);
+			$html = preg_replace_callback(
+				'~##.*##~U',
+				function ($matches) {
+					return html_entity_decode($matches[0], ENT_QUOTES, 'UTF-8');
+				},
+				$html
+			);
 
 			$response = new MutablePreRenderedMessageTemplate(
 				$message,
