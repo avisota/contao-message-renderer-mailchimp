@@ -17,6 +17,7 @@ namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 
 use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\MessageContent;
+use Avisota\Contao\Message\Core\MessageEvents;
 use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
@@ -39,8 +40,8 @@ class OptionsBuilder implements EventSubscriberInterface
 			'avisota.create-mailchimp-template-options'   => 'createMailChimpTemplateOptions',
 			'avisota.create-content-type-options'         => 'createContentTypeOptions',
 			// Message content related options
-			'avisota.create-message-content-type-options' => 'createCellContentTypeOptions',
-			'avisota.create-message-content-cell-options' => 'createMessageContentCellOptions',
+			MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => 'createCellContentTypeOptions',
+			MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => 'createMessageContentCellOptions',
 		);
 	}
 
