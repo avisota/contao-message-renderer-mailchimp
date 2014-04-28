@@ -221,37 +221,57 @@ class OptionsBuilder implements EventSubscriberInterface
 	 */
 	public function getMessageContentCellOptions($dc, $options = array())
 	{
-		/** @var EntityModel $model */
-		$model = $dc->getModel();
-		/** @var \Avisota\Contao\Entity\MessageContent $content */
-		$content = $model->getEntity();
-		$message = $content->getMessage();
-		$layout  = $message->getLayout();
+		if ($dc instanceof DcCompat) {
+			/** @var EntityModel $model */
+			$model = $dc->getModel();
+			/** @var \Avisota\Contao\Entity\MessageContent $content */
+			$content = $model->getEntity();
+			$message = $content->getMessage();
+			$layout  = $message->getLayout();
 
-		if (!$layout || $layout->getType() != 'mailChimp') {
-			return $options;
-		}
+			if (!$layout || $layout->getType() != 'mailChimp') {
+				return $options;
+			}
 
-		list($templateGroup, $templateName) = explode(':', $layout->getMailchimpTemplate());
-		$mailChimpTemplate = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$templateGroup][$templateName];
-		$cells             = $mailChimpTemplate['cells'];
-		$rows              = isset($mailChimpTemplate['rows']) ? $mailChimpTemplate['rows'] : array();
+			list($templateGroup, $templateName) = explode(':', $layout->getMailchimpTemplate());
+			$mailChimpTemplate = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$templateGroup][$templateName];
+			$cells             = $mailChimpTemplate['cells'];
+			$rows              = isset($mailChimpTemplate['rows']) ? $mailChimpTemplate['rows'] : array();
 
-		$repeatableCells = array();
-		foreach ($rows as $row) {
-			$repeatableCells = array_merge($repeatableCells, $row['affectedCells']);
-		}
+			$repeatableCells = array();
+			foreach ($rows as $row) {
+				$repeatableCells = array_merge($repeatableCells, $row['affectedCells']);
+			}
 
-		foreach ($cells as $cellName => $cell) {
-			if (!isset($cell['content'])) {
-				if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
-					$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+			foreach ($cells as $cellName => $cell) {
+				if (!isset($cell['content'])) {
+					if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
+						$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+					}
+					else {
+						$label = $cellName;
+					}
+
+					$options[$cellName] = $label;
 				}
-				else {
-					$label = $cellName;
-				}
+			}
+		}
+		else {
+			foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $templates) {
+				foreach ($templates as $template) {
+					foreach ($template['cells'] as $cellName => $cell) {
+						if (!isset($options[$cellName])) {
+							if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
+								$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+							}
+							else {
+								$label = $cellName;
+							}
 
-				$options[$cellName] = $label;
+							$options[$cellName] = $label;
+						}
+					}
+				}
 			}
 		}
 
