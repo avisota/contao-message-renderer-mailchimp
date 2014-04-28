@@ -13,7 +13,6 @@
  * @filesource
  */
 
-use ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEventCallbackFactory;
 
 /**
  * Table orm_avisota_layout
@@ -31,7 +30,7 @@ $GLOBALS['TL_DCA']['orm_avisota_layout']['fields']['mailChimpTemplate'] = array
 	'label'            => &$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate'],
 	'exclude'          => true,
 	'inputType'        => 'select',
-	'options_callback' => CreateOptionsEventCallbackFactory::createCallback('avisota.create-mailchimp-template-options'),
+	'options_callback' => \ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEventCallbackFactory::createCallback('avisota.create-mailchimp-template-options'),
 	'eval'             => array(
 		'mandatory'          => true,
 		'includeBlankOption' => true,
