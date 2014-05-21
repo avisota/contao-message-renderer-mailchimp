@@ -40,8 +40,8 @@ class OptionsBuilder implements EventSubscriberInterface
 			'avisota.create-mailchimp-template-options'   => 'createMailChimpTemplateOptions',
 			'avisota.create-content-type-options'         => 'createContentTypeOptions',
 			// Message content related options
-			MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => 'createCellContentTypeOptions',
-			MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => 'createMessageContentCellOptions',
+			MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array('createCellContentTypeOptions', 100),
+			MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array('createMessageContentCellOptions', 100),
 		);
 	}
 
