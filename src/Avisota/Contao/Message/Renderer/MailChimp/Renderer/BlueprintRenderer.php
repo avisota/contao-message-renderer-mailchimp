@@ -24,6 +24,8 @@ use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
 use Contao\Doctrine\ORM\EntityHelper;
+use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
+use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class BlueprintRenderer implements MessageRendererInterface
@@ -322,9 +324,12 @@ class BlueprintRenderer implements MessageRendererInterface
 				$html
 			);
 
+			$replaceInsertTags = new ReplaceInsertTagsEvent($html, false);
+			$eventDispatcher->dispatch(ContaoEvents::CONTROLLER_REPLACE_INSERT_TAGS, $replaceInsertTags);
+
 			$response = new MutablePreRenderedMessageTemplate(
 				$message,
-				$html,
+				$replaceInsertTags->getBuffer(),
 				standardize($message->getSubject()) . '.html',
 				'text/html',
 				'utf-8'
