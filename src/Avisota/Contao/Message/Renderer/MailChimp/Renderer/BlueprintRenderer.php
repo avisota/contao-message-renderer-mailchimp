@@ -373,17 +373,9 @@ class BlueprintRenderer implements MessageRendererInterface
 	 */
 	public function renderContent(MessageContent $messageContent, Layout $layout = null)
 	{
-		if (!$layout || $layout->getType() != 'mailChimp') {
-			return null;
-		}
+		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
+		$renderer = $GLOBALS['container']['avisota.message.renderer'];
 
-		/** @var EventDispatcher $eventDispatcher */
-		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
-
-		$event = new RenderMessageContentEvent($messageContent, $layout);
-
-		$eventDispatcher->dispatch(AvisotaMessageEvents::RENDER_MESSAGE_CONTENT, $event);
-
-		return $event->getRenderedContent();
+		return $renderer->renderContent($messageContent, $layout);
 	}
 }
