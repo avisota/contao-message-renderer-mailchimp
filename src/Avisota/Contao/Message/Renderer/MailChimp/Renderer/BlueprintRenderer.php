@@ -358,26 +358,10 @@ class BlueprintRenderer implements MessageRendererInterface
 			return null;
 		}
 
-		$entityHelper = EntityHelper::getEntityManager();
-		$queryBuilder = $entityHelper->createQueryBuilder();
-		$contents     = $queryBuilder
-			->select('c')
-			->from('Avisota\Contao:MessageContent', 'c')
-			->where('c.message=:message')
-			->andWhere('c.cell=:cell')
-			->setParameter(':message', $message->getId())
-			->setParameter(':cell', $cell)
-			->orderBy('c.sorting')
-			->getQuery()
-			->getResult();
+		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
+		$renderer = $GLOBALS['container']['avisota.message.renderer'];
 
-		$elementContents = new \ArrayObject();
-
-		foreach ($contents as $content) {
-			$elementContents->append($this->renderContent($content, $layout));
-		}
-
-		return $elementContents;
+		return $renderer->renderCell($message, $cell, $layout);
 	}
 
 	/**
