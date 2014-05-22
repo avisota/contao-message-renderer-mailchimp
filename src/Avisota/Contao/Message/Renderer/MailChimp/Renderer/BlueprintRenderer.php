@@ -24,6 +24,8 @@ use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
 use Contao\Doctrine\ORM\EntityHelper;
+use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
+use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class BlueprintRenderer implements MessageRendererInterface
@@ -97,14 +99,17 @@ class BlueprintRenderer implements MessageRendererInterface
 					if (isset($cellConfig['ifEmptyRemove'])) {
 						$expression = $cellConfig['ifEmptyRemove'];
 					}
-					else {
+					else if(isset($cellConfig['xpath'])) {
 						$expression = $cellConfig['xpath'];
+					}
+					else {
+						throw new \RuntimeException(sprintf('The cell "%s" does not have a valid selector', $cellName));
 					}
 
 					$nodes = $xpath->query(str_replace('mc:', 'mc__', $expression), $document->documentElement);
 
 					if (!$nodes->length) {
-						throw new \RuntimeException('Node ' . $expression . ' not found in ' . $blueprint['template']);
+						throw new \RuntimeException('Node "' . $expression . '" not found in ' . $blueprint['template']);
 					}
 
 					for ($i = 0; $i < $nodes->length; $i++) {
@@ -190,10 +195,15 @@ class BlueprintRenderer implements MessageRendererInterface
 					}
 
 					$expression  = $cellConfig['xpath'];
+
+					if (empty($expression)) {
+						throw new \RuntimeException(sprintf('The cell "%s" does not have a valid selector', $cellName));
+					}
+
 					$targetNodes = $xpath->query(str_replace('mc:', 'mc__', $expression), $document->documentElement);
 
 					if (!$targetNodes->length) {
-						throw new \RuntimeException('Node ' . $expression . ' not found in ' . $blueprint['template']);
+						throw new \RuntimeException('Node "' . $expression . '" not found in ' . $blueprint['template']);
 					}
 
 					for ($i = 0; $i < $targetNodes->length; $i++) {
@@ -300,7 +310,7 @@ class BlueprintRenderer implements MessageRendererInterface
 				$html
 			);
 			$html = preg_replace_callback(
-				'~\{\{.*\}\}~U',
+				'~\{%.*%\}~U',
 				function ($matches) {
 					return html_entity_decode($matches[0], ENT_QUOTES, 'UTF-8');
 				},
@@ -314,9 +324,12 @@ class BlueprintRenderer implements MessageRendererInterface
 				$html
 			);
 
+			$replaceInsertTags = new ReplaceInsertTagsEvent($html, false);
+			$eventDispatcher->dispatch(ContaoEvents::CONTROLLER_REPLACE_INSERT_TAGS, $replaceInsertTags);
+
 			$response = new MutablePreRenderedMessageTemplate(
 				$message,
-				$html,
+				$replaceInsertTags->getBuffer(),
 				standardize($message->getSubject()) . '.html',
 				'text/html',
 				'utf-8'
@@ -345,26 +358,10 @@ class BlueprintRenderer implements MessageRendererInterface
 			return null;
 		}
 
-		$entityHelper = EntityHelper::getEntityManager();
-		$queryBuilder = $entityHelper->createQueryBuilder();
-		$contents     = $queryBuilder
-			->select('c')
-			->from('Avisota\Contao:MessageContent', 'c')
-			->where('c.message=:message')
-			->andWhere('c.cell=:cell')
-			->setParameter(':message', $message->getId())
-			->setParameter(':cell', $cell)
-			->orderBy('c.sorting')
-			->getQuery()
-			->getResult();
+		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
+		$renderer = $GLOBALS['container']['avisota.message.renderer'];
 
-		$elementContents = new \ArrayObject();
-
-		foreach ($contents as $content) {
-			$elementContents->append($this->renderContent($content, $layout));
-		}
-
-		return $elementContents;
+		return $renderer->renderCell($message, $cell, $layout);
 	}
 
 	/**
@@ -376,17 +373,9 @@ class BlueprintRenderer implements MessageRendererInterface
 	 */
 	public function renderContent(MessageContent $messageContent, Layout $layout = null)
 	{
-		if (!$layout || $layout->getType() != 'mailChimp') {
-			return null;
-		}
+		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
+		$renderer = $GLOBALS['container']['avisota.message.renderer'];
 
-		/** @var EventDispatcher $eventDispatcher */
-		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
-
-		$event = new RenderMessageContentEvent($messageContent, $layout);
-
-		$eventDispatcher->dispatch(AvisotaMessageEvents::RENDER_MESSAGE_CONTENT, $event);
-
-		return $event->getRenderedContent();
+		return $renderer->renderContent($messageContent, $layout);
 	}
 }
