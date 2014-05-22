@@ -97,14 +97,17 @@ class BlueprintRenderer implements MessageRendererInterface
 					if (isset($cellConfig['ifEmptyRemove'])) {
 						$expression = $cellConfig['ifEmptyRemove'];
 					}
-					else {
+					else if(isset($cellConfig['xpath'])) {
 						$expression = $cellConfig['xpath'];
+					}
+					else {
+						throw new \RuntimeException(sprintf('The cell "%s" does not have a valid selector', $cellName));
 					}
 
 					$nodes = $xpath->query(str_replace('mc:', 'mc__', $expression), $document->documentElement);
 
 					if (!$nodes->length) {
-						throw new \RuntimeException('Node ' . $expression . ' not found in ' . $blueprint['template']);
+						throw new \RuntimeException('Node "' . $expression . '" not found in ' . $blueprint['template']);
 					}
 
 					for ($i = 0; $i < $nodes->length; $i++) {
@@ -190,10 +193,15 @@ class BlueprintRenderer implements MessageRendererInterface
 					}
 
 					$expression  = $cellConfig['xpath'];
+
+					if (empty($expression)) {
+						throw new \RuntimeException(sprintf('The cell "%s" does not have a valid selector', $cellName));
+					}
+
 					$targetNodes = $xpath->query(str_replace('mc:', 'mc__', $expression), $document->documentElement);
 
 					if (!$targetNodes->length) {
-						throw new \RuntimeException('Node ' . $expression . ' not found in ' . $blueprint['template']);
+						throw new \RuntimeException('Node "' . $expression . '" not found in ' . $blueprint['template']);
 					}
 
 					for ($i = 0; $i < $targetNodes->length; $i++) {
