@@ -15,13 +15,13 @@
 
 namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 
+use Avisota\Contao\Core\Event\CreateOptionsEvent;
 use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\MessageEvents;
 use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
-use ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEvent;
 use ContaoCommunityAlliance\DcGeneral\Contao\Compatibility\DcCompat;
 use ContaoCommunityAlliance\DcGeneral\DC_General;
 use ContaoCommunityAlliance\DcGeneral\DcGeneral;
@@ -120,6 +120,7 @@ class OptionsBuilder implements EventSubscriberInterface
 			}
 		}
 
+		$event->preventDefault();
 	}
 
 	/**
@@ -129,7 +130,7 @@ class OptionsBuilder implements EventSubscriberInterface
 	 */
 	public function createMessageContentCellOptions(CreateOptionsEvent $event)
 	{
-		$this->getMessageContentCellOptions($event->getDataContainer(), $event->getOptions());
+		$this->getMessageContentCellOptions($event->getDataContainer(), $event->getOptions(), $event);
 	}
 
 	/**
@@ -137,7 +138,7 @@ class OptionsBuilder implements EventSubscriberInterface
 	 *
 	 * @param DcCompat $dc
 	 */
-	public function getMessageContentCellOptions($dc, $options = array())
+	public function getMessageContentCellOptions($dc, $options = array(), CreateOptionsEvent $event = null)
 	{
 		if ($dc instanceof DcCompat) {
 			/** @var EntityModel $model */
@@ -173,6 +174,10 @@ class OptionsBuilder implements EventSubscriberInterface
 					$options[$cellName] = $label;
 				}
 			}
+
+			if ($event) {
+				$event->preventDefault();
+			}
 		}
 		else {
 			foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $templates) {
@@ -190,6 +195,10 @@ class OptionsBuilder implements EventSubscriberInterface
 						}
 					}
 				}
+			}
+
+			if ($event) {
+				$event->preventDefault();
 			}
 		}
 
