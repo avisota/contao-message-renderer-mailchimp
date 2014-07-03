@@ -92,7 +92,7 @@ class BlueprintRenderer implements MessageRendererInterface
 				// remove empty nodes
 				if (
 					is_array($cellContents[$cellName]) &&
-					empty($cellContents[$cellName]) ||
+					empty(array_filter($cellContents[$cellName])) ||
 					$cellContents[$cellName] instanceof \ArrayObject &&
 					$cellContents[$cellName]->count() == 0
 				) {
@@ -114,16 +114,7 @@ class BlueprintRenderer implements MessageRendererInterface
 
 					for ($i = 0; $i < $nodes->length; $i++) {
 						$node = $nodes->item(0);
-
-						if ($replace) {
-							$node->parentNode->removeChild($node);
-						}
-						else {
-							while ($node->childNodes->length) {
-								$childNode = $node->childNodes->item(0);
-								$node->removeChild($childNode);
-							}
-						}
+						$node->parentNode->removeChild($node);
 					}
 				}
 				else if (!empty($cellContents[$cellName])) {
