@@ -92,7 +92,7 @@ class BlueprintRenderer implements MessageRendererInterface
 				// remove empty nodes
 				if (
 					is_array($cellContents[$cellName]) &&
-					empty(array_filter($cellContents[$cellName])) ||
+					!count(array_filter($cellContents[$cellName])) ||
 					$cellContents[$cellName] instanceof \ArrayObject &&
 					$cellContents[$cellName]->count() == 0
 				) {
