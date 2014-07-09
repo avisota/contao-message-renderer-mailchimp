@@ -875,19 +875,9 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
 			'xpath'   => '//table[@id="templateBody"]//td[@class="templateButtonContent"]//a',
 			'content' => '{% if link.text %}##link.text##{% else %}## "##link.text##" ##{% endif %}',
 		),
-		'social'       => array(
-			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]',
-			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
-		),
 		'footer'       => array(
 			'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
 			'preferredElements' => array('text', 'image'),
-		),
-		'rewards'      => array(
-			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
-			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
