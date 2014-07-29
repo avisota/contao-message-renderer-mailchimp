@@ -75,7 +75,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -140,7 +140,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-leftsidebar'] = ar
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -205,7 +205,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-rightsidebar'] = a
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -265,7 +265,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-2-1'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -320,7 +320,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-basic2column'] = array
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -385,7 +385,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -450,7 +450,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-asym'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -520,7 +520,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-leftsidebar'] = ar
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -590,7 +590,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-rightsidebar'] = a
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -655,7 +655,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -720,7 +720,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1-asym'] = array(
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -780,7 +780,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
@@ -840,7 +840,7 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column-asym'] = 
 		'rewards'      => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 			'content'       => '',
-			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]/..',
+			'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="monkeyRewards"]',
 		),
 		'subscription' => array(
 			'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
