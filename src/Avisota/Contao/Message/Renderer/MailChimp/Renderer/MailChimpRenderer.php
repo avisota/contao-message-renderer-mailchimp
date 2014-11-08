@@ -103,7 +103,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_headline', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_headline', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
@@ -136,7 +136,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_hyperlink', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_hyperlink', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
@@ -169,7 +169,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_image', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_image', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
@@ -202,7 +202,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_list', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_list', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
@@ -235,7 +235,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_table', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_table', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
@@ -268,7 +268,7 @@ class MailChimpRenderer implements EventSubscriberInterface
 
 		$context = $entityAccessor->getProperties($content);
 
-		$template = new \TwigTemplate('avisota/message/renderer/default/mce_text', 'html');
+		$template = new \TwigTemplate('avisota/message/renderer/mailchimp/mce_text', 'html');
 		$buffer   = $template->parse($context);
 
 		$event->setRenderedContent($buffer);
