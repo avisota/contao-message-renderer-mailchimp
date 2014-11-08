@@ -284,17 +284,8 @@ class BlueprintRenderer implements MessageRendererInterface
 				}
 			}
 
-			$baseUrl = $environment->base;
-			$links   = $xpath->query('//@href|//@src');
-			for ($i = 0; $i < $links->length; $i++) {
-				/** @var \DOMAttr $link */
-				$link = $links->item($i);
-				if (!preg_match('~(^\w+:|^#[^#]|##)~', $link->value)) {
-					$link->value = $baseUrl . $link->value;
-				}
-			}
-
 			$html = $document->saveHTML();
+
 			$html = str_replace(
 				array('%7B', '%7D', '%20'),
 				array('{',   '}',   ' '),
@@ -317,10 +308,44 @@ class BlueprintRenderer implements MessageRendererInterface
 
 			$replaceInsertTags = new ReplaceInsertTagsEvent($html, false);
 			$eventDispatcher->dispatch(ContaoEvents::CONTROLLER_REPLACE_INSERT_TAGS, $replaceInsertTags);
+            $html = $replaceInsertTags->getBuffer();
+
+            $document->loadHTML($html);
+			$xpath = new \DOMXPath($document);
+			$baseUrl = $environment->base;
+			$links   = $xpath->query('//@href|//@src');
+			for ($i = 0; $i < $links->length; $i++) {
+				/** @var \DOMAttr $link */
+				$link = $links->item($i);
+				if (!preg_match('~(^\w+:|^#[^#]|##)~', $link->value)) {
+					$link->value = $baseUrl . $link->value;
+				}
+			}
+            $html = $document->saveHTML();
+
+			$html = str_replace(
+				array('%7B', '%7D', '%20'),
+				array('{',   '}',   ' '),
+				$html
+			);
+			$html = preg_replace_callback(
+				'~\{%.*%\}~U',
+				function ($matches) {
+					return html_entity_decode($matches[0], ENT_QUOTES, 'UTF-8');
+				},
+				$html
+			);
+			$html = preg_replace_callback(
+				'~##.*##~U',
+				function ($matches) {
+					return html_entity_decode($matches[0], ENT_QUOTES, 'UTF-8');
+				},
+				$html
+			);
 
 			$response = new MutablePreRenderedMessageTemplate(
 				$message,
-				$replaceInsertTags->getBuffer(),
+				$html,
 				standardize($message->getSubject()) . '.html',
 				'text/html',
 				'utf-8'
