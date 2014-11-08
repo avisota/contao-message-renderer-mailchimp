@@ -14,12 +14,12 @@
 		{% endif %}
 		<tr>
 			<td>
-				<table summary="{{ summary }}">
+				<table summary="{{ tableSummary }}">
 					{% set start = 0 %}
-					{% set end = thead|length %}
-					{% if thead %}
+					{% set end = tableItems|length %}
+			{% if tableHeader %}
 						<thead>
-						{% set row = tableitems|first %}
+						{% set row = tableItems|first %}
 						{% set start = 1 %}
 						{% set end = end - 1 %}
 						<tr>
@@ -30,9 +30,9 @@
 						</thead>
 					{% endif %}
 
-					{% if tfoot %}
+			{% if tableFooter %}
 						<tfoot>
-						{% set row = tableitems|last %}
+						{% set row = tableItems|last %}
 						{% set end = end - 1 %}
 						<tr>
 							{% for cell in row %}
@@ -43,10 +43,10 @@
 					{% endif %}
 
 					<tbody>
-					{% for row in tableitems|slice(start, end) %}
+					{% for row in tableItems|slice(start, end) %}
 						<tr>
 							{% for cell in row %}
-								<th>{{ cell }}</th>
+								<td>{{ cell }}</td>
 							{% endfor %}
 						</tr>
 					{% endfor %}
