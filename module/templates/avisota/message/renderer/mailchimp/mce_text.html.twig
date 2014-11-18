@@ -25,13 +25,15 @@
 
 					<tr>
 						{% if addImage and (imageFloating == 'left') %}
-							<td>
+							<td style="vertical-align:top">
 								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
 							</td>
 						{% endif %}
-						<td>{{ text }}</td>
+                        <td{% if addImage and (imageFloating == 'left' or imageFloating == 'right') %} style="vertical-align:top"{%endif %}>
+                            {{ text }}
+                        </td>
 						{% if addImage and (imageFloating == 'right') %}
-							<td>
+							<td style="vertical-align:top">
 								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
 							</td>
 						{% endif %}

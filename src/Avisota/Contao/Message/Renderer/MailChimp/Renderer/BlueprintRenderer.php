@@ -212,12 +212,12 @@ class BlueprintRenderer implements MessageRendererInterface
 						else {
 							// if not replace, empty target node
 							if (!$replace) {
-								if (!in_array($cellName, $clearedCells)) {
+								if (!in_array($cellName . '__' . $i, $clearedCells)) {
 									while ($targetNode->childNodes->length) {
 										$childNode = $targetNode->childNodes->item(0);
 										$targetNode->removeChild($childNode);
 									}
-									$clearedCells[] = $cellName;
+									$clearedCells[] = $cellName . '__' . $i;
 								}
 							}
 
@@ -287,8 +287,8 @@ class BlueprintRenderer implements MessageRendererInterface
 			$html = $document->saveHTML();
 
 			$html = str_replace(
-				array('%7B', '%7D', '%20'),
-				array('{',   '}',   ' '),
+				array('%5B', '%5D', '%7B', '%7D', '%20'),
+				array('[', ']', '{',   '}',   ' '),
 				$html
 			);
 			$html = preg_replace_callback(
@@ -324,8 +324,8 @@ class BlueprintRenderer implements MessageRendererInterface
             $html = $document->saveHTML();
 
 			$html = str_replace(
-				array('%7B', '%7D', '%20'),
-				array('{',   '}',   ' '),
+				array('%5B', '%5D', '%7B', '%7D', '%20'),
+				array('[', ']', '{',   '}',   ' '),
 				$html
 			);
 			$html = preg_replace_callback(
