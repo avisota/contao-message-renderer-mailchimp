@@ -212,12 +212,12 @@ class BlueprintRenderer implements MessageRendererInterface
 						else {
 							// if not replace, empty target node
 							if (!$replace) {
-								if (!in_array($cellName, $clearedCells)) {
+								if (!in_array($cellName . '__' . $i, $clearedCells)) {
 									while ($targetNode->childNodes->length) {
 										$childNode = $targetNode->childNodes->item(0);
 										$targetNode->removeChild($childNode);
 									}
-									$clearedCells[] = $cellName;
+									$clearedCells[] = $cellName . '__' . $i;
 								}
 							}
 
