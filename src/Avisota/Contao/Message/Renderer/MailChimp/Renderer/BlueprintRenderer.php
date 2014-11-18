@@ -287,8 +287,8 @@ class BlueprintRenderer implements MessageRendererInterface
 			$html = $document->saveHTML();
 
 			$html = str_replace(
-				array('%7B', '%7D', '%20'),
-				array('{',   '}',   ' '),
+				array('%5B', '%5D', '%7B', '%7D', '%20'),
+				array('[', ']', '{',   '}',   ' '),
 				$html
 			);
 			$html = preg_replace_callback(
@@ -324,8 +324,8 @@ class BlueprintRenderer implements MessageRendererInterface
             $html = $document->saveHTML();
 
 			$html = str_replace(
-				array('%7B', '%7D', '%20'),
-				array('{',   '}',   ' '),
+				array('%5B', '%5D', '%7B', '%7D', '%20'),
+				array('[', ']', '{',   '}',   ' '),
 				$html
 			);
 			$html = preg_replace_callback(
