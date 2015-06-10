@@ -258,8 +258,8 @@ class BlueprintRenderer implements MessageRendererInterface
 			}
 			$styles->trim();
 			if ($styles->length()) {
-				$styles->insert(0, "<style>\n");
-				$styles->append("\n</style>");
+                $styles->insert(0, " <style> {% raw %} \n");
+                $styles->append("\n {% endraw %} </style> ");
 				$headers['styles'] = $styles;
 			}
 
