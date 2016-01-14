@@ -15,15 +15,14 @@
 
 namespace Avisota\Contao\Message\Renderer\MailChimp\Renderer;
 
+use Avisota\Contao\Core\Message\PreRenderedMessageTemplateInterface;
 use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\Message;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
-use Avisota\Contao\Message\Core\Event\RenderMessageContentEvent;
 use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
-use Contao\Doctrine\ORM\EntityHelper;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
