@@ -6,24 +6,24 @@
 {% set headline = headline.value %}
 
 {% if not linkTitle %}
-	{% set linkTitle = url %}
+    {% set linkTitle = url %}
 {% endif %}
 
 {% set link = '<a href="' ~ url ~ '" target="_blank">' ~ linkTitle ~ '</a>' %}
 
 {% if embed %}
-	{% set link = embed|format(link) %}
+    {% set link = embed|format(link) %}
 {% endif %}
 
 {% block content %}
-	{% spaceless %}
-		{% if headline %}
-			<tr>
-				<td><{{ hl }}>{{ headline }}</{{ hl }}></td>
-			</tr>
-		{% endif %}
-		<tr>
-			<td>{{ link }}</td>
-		</tr>
-	{% endspaceless %}
+    {% spaceless %}
+        {% if headline %}
+            <tr>
+                <td><{{ hl }}>{{ headline }}</{{ hl }}></td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>{{ link }}</td>
+        </tr>
+    {% endspaceless %}
 {% endblock %}

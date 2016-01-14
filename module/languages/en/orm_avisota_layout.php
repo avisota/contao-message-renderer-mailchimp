@@ -13,15 +13,13 @@
  * @filesource
  */
 
-
 /**
  * Fields
  */
 $GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate'] = array(
-	'Mailchimp template',
-	'Chose the basic structure and template for this layout.'
+    'Mailchimp template',
+    'Chose the basic structure and template for this layout.'
 );
-
 
 /**
  * Reference
