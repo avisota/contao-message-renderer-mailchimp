@@ -28,10 +28,22 @@ use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
+/**
+ * Class BlueprintRenderer
+ *
+ * @package Avisota\Contao\Message\Renderer\MailChimp\Renderer
+ */
 class BlueprintRenderer implements MessageRendererInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * Render a complete message.
+	 *
+	 * @param Message $message
+	 *
+	 * @param Layout  $layout
+	 *
+	 * @return PreRenderedMessageTemplateInterface
+	 * @throws \Exception
 	 */
 	public function renderMessage(Message $message, Layout $layout = null)
 	{
@@ -366,6 +378,8 @@ class BlueprintRenderer implements MessageRendererInterface
 	 * @param Message $message
 	 * @param string  $cell
 	 *
+	 * @param Layout  $layout
+	 *
 	 * @return \StringBuilder
 	 */
 	public function renderCell(Message $message, $cell, Layout $layout = null)
@@ -387,7 +401,9 @@ class BlueprintRenderer implements MessageRendererInterface
 	 *
 	 * @return string
 	 */
-	public function renderContent(MessageContent $messageContent, Layout $layout = null)
+	public function renderContent(MessageContent $messageContent,
+		/** @noinspection PhpDocSignatureInspection */
+		Layout $layout = null)
 	{
 		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
 		$renderer = $GLOBALS['container']['avisota.message.renderer'];

@@ -28,11 +28,31 @@ use ContaoCommunityAlliance\DcGeneral\DcGeneral;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class OptionsBuilder
+ *
+ * @package Avisota\Contao\Message\Renderer\MailChimp\DataContainer
+ */
 class OptionsBuilder implements EventSubscriberInterface
 {
 	/**
-	 * {@inheritdoc}
-	 */
+	 * Returns an array of event names this subscriber wants to listen to.
+	 *
+	 * The array keys are event names and the value can be:
+	 *
+	 *  * The method name to call (priority defaults to 0)
+	 *  * An array composed of the method name to call and the priority
+	 *  * An array of arrays composed of the method names to call and respective
+	 *    priorities, or 0 if unset
+	 *
+	 * For instance:
+	 *
+	 *  * array('eventName' => 'methodName')
+	 *  * array('eventName' => array('methodName', $priority))
+	 *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
+	 *
+	 * @return array The event names to listen to
+     */
 	static public function getSubscribedEvents()
 	{
 		return array(
@@ -45,12 +65,20 @@ class OptionsBuilder implements EventSubscriberInterface
 		);
 	}
 
+	/**
+	 * @param CreateOptionsEvent $event
+     */
 	public function createMailChimpTemplateOptions(CreateOptionsEvent $event)
 	{
 		$this->getMailChimpTemplateOptions($event->getOptions());
 	}
 
-	public function getMailChimpTemplateOptions($options = array())
+	/**
+	 * @param array $options
+	 *
+	 * @return array
+     */
+    public function getMailChimpTemplateOptions($options = array())
 	{
 		/** @var EventDispatcher $eventDispatcher */
 		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
@@ -83,6 +111,9 @@ class OptionsBuilder implements EventSubscriberInterface
 		return $options;
 	}
 
+	/**
+	 * @param CreateOptionsEvent $event
+     */
 	public function createContentTypeOptions(CreateOptionsEvent $event)
 	{
 		/** @var DcCompat $dc */
@@ -126,7 +157,9 @@ class OptionsBuilder implements EventSubscriberInterface
 	/**
 	 * Get a list of areas from the parent category.
 	 *
-	 * @param DC_General $dc
+	 * @param CreateOptionsEvent $event
+	 *
+	 * @internal param DC_General $dc
 	 */
 	public function createMessageContentCellOptions(CreateOptionsEvent $event)
 	{
@@ -136,7 +169,12 @@ class OptionsBuilder implements EventSubscriberInterface
 	/**
 	 * Get a list of areas from the parent category.
 	 *
-	 * @param DcCompat $dc
+	 * @param DcCompat           $dc
+	 *
+	 * @param array              $options
+	 * @param CreateOptionsEvent $event
+	 *
+	 * @return array
 	 */
 	public function getMessageContentCellOptions($dc, $options = array(), CreateOptionsEvent $event = null)
 	{
@@ -206,7 +244,9 @@ class OptionsBuilder implements EventSubscriberInterface
 	}
 
 	/**
-	 * @param Layout $layout
+	 * @param CreateOptionsEvent $event
+	 *
+	 * @internal param Layout $layout
 	 */
 	public function createCellContentTypeOptions(CreateOptionsEvent $event)
 	{
@@ -229,6 +269,8 @@ class OptionsBuilder implements EventSubscriberInterface
 	/**
 	 * @param array|\ArrayObject $options
 	 * @param MessageContent     $content
+	 *
+	 * @return array|\ArrayObject
 	 */
 	public function getCellContentTypeOptions($options = array(), MessageContent $content)
 	{

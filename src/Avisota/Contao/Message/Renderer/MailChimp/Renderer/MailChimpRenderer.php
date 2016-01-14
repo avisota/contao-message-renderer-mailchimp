@@ -36,7 +36,22 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class MailChimpRenderer implements EventSubscriberInterface
 {
     /**
-     * {@inheritdoc}
+     * Returns an array of event names this subscriber wants to listen to.
+     *
+     * The array keys are event names and the value can be:
+     *
+     *  * The method name to call (priority defaults to 0)
+     *  * An array composed of the method name to call and the priority
+     *  * An array of arrays composed of the method names to call and respective
+     *    priorities, or 0 if unset
+     *
+     * For instance:
+     *
+     *  * array('eventName' => 'methodName')
+     *  * array('eventName' => array('methodName', $priority))
+     *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
+     *
+     * @return array The event names to listen to
      */
     static public function getSubscribedEvents()
     {
@@ -55,6 +70,11 @@ class MailChimpRenderer implements EventSubscriberInterface
         );
     }
 
+    /**
+     * @param RenderMessageEvent $event
+     *
+     * @throws \Exception
+     */
     public function renderMessage(RenderMessageEvent $event)
     {
         if ($event->getPreRenderedMessageTemplate()) {
@@ -77,10 +97,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the headline content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderHeadline(RenderMessageContentEvent $event)
     {
@@ -110,10 +132,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the hyperlink content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderHyperlink(RenderMessageContentEvent $event)
     {
@@ -143,10 +167,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the image content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderImage(RenderMessageContentEvent $event)
     {
@@ -176,10 +202,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the list content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderList(RenderMessageContentEvent $event)
     {
@@ -209,10 +237,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the table content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderTable(RenderMessageContentEvent $event)
     {
@@ -242,10 +272,12 @@ class MailChimpRenderer implements EventSubscriberInterface
     /**
      * Render the text content element.
      *
-     * @param MessageContent     $content
-     * @param RecipientInterface $recipient
+     * @param RenderMessageContentEvent $event
      *
      * @return string
+     * @internal param MessageContent $content
+     * @internal param RecipientInterface $recipient
+     *
      */
     public function renderText(RenderMessageContentEvent $event)
     {
