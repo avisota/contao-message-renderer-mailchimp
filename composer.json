@@ -49,12 +49,12 @@
     "extra": {
         "contao": {
             "sources": {
-                "module": "system/modules/avisota-message-renderer-mailchimp"
+                "contao": "system/modules/avisota-message-renderer-mailchimp"
             },
             "transifex": {
                 "project": "avisota-contao",
                 "prefix": "contao-message-renderer-mailchimp-",
-                "languages_cto": "module/languages",
+                "languages_cto": "contao/languages",
                 "languages_tx": ".tx"
             }
         },
