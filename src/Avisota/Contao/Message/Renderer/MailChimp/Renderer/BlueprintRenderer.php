@@ -2,12 +2,12 @@
 
 /**
  * Avisota newsletter and mailing system
- * Copyright (C) 2013 Tristan Lins
+ * Copyright © 2016 Sven Baumann
  *
  * PHP version 5
  *
- * @copyright  bit3 UG 2013
- * @author     Tristan Lins <tristan.lins@bit3.de>
+ * @copyright  way.vision 2016
+ * @author     Sven Baumann <baumann.sv@gmail.com>
  * @package    avisota/contao-renderer-mailchimp
  * @license    LGPL-3.0+
  * @filesource
@@ -15,23 +15,34 @@
 
 namespace Avisota\Contao\Message\Renderer\MailChimp\Renderer;
 
+use Avisota\Contao\Core\Message\PreRenderedMessageTemplateInterface;
 use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\Message;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
-use Avisota\Contao\Message\Core\Event\RenderMessageContentEvent;
 use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
-use Contao\Doctrine\ORM\EntityHelper;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
+/**
+ * Class BlueprintRenderer
+ *
+ * @package Avisota\Contao\Message\Renderer\MailChimp\Renderer
+ */
 class BlueprintRenderer implements MessageRendererInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * Render a complete message.
+	 *
+	 * @param Message $message
+	 *
+	 * @param Layout  $layout
+	 *
+	 * @return PreRenderedMessageTemplateInterface
+	 * @throws \Exception
 	 */
 	public function renderMessage(Message $message, Layout $layout = null)
 	{
@@ -366,6 +377,8 @@ class BlueprintRenderer implements MessageRendererInterface
 	 * @param Message $message
 	 * @param string  $cell
 	 *
+	 * @param Layout  $layout
+	 *
 	 * @return \StringBuilder
 	 */
 	public function renderCell(Message $message, $cell, Layout $layout = null)
@@ -387,7 +400,9 @@ class BlueprintRenderer implements MessageRendererInterface
 	 *
 	 * @return string
 	 */
-	public function renderContent(MessageContent $messageContent, Layout $layout = null)
+	public function renderContent(MessageContent $messageContent,
+		/** @noinspection PhpDocSignatureInspection */
+		Layout $layout = null)
 	{
 		/** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
 		$renderer = $GLOBALS['container']['avisota.message.renderer'];

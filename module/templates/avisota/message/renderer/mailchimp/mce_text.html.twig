@@ -6,48 +6,48 @@
 {% set headline = headline.value %}
 
 {% block content %}
-	{% spaceless %}
-		{% if headline %}
-			<tr>
-				<td><{{ hl }}>{{ headline }}</{{ hl }}></td>
-			</tr>
-		{% endif %}
-		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					{% if addImage and (imageFloating == 'above') %}
-						<tr>
-							<td>
-								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
-							</td>
-						</tr>
-					{% endif %}
+    {% spaceless %}
+        {% if headline %}
+            <tr>
+                <td><{{ hl }}>{{ headline }}</{{ hl }}></td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    {% if addImage and (imageFloating == 'above') %}
+                        <tr>
+                            <td>
+                                {{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
+                            </td>
+                        </tr>
+                    {% endif %}
 
-					<tr>
-						{% if addImage and (imageFloating == 'left') %}
-							<td style="vertical-align:top">
-								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
-							</td>
-						{% endif %}
-                        <td{% if addImage and (imageFloating == 'left' or imageFloating == 'right') %} style="vertical-align:top"{%endif %}>
+                    <tr>
+                        {% if addImage and (imageFloating == 'left') %}
+                            <td style="vertical-align:top">
+                                {{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
+                            </td>
+                        {% endif %}
+                        <td{% if addImage and (imageFloating == 'left' or imageFloating == 'right') %} style="vertical-align:top"{% endif %}>
                             {{ text }}
                         </td>
-						{% if addImage and (imageFloating == 'right') %}
-							<td style="vertical-align:top">
-								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
-							</td>
-						{% endif %}
-					</tr>
+                        {% if addImage and (imageFloating == 'right') %}
+                            <td style="vertical-align:top">
+                                {{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
+                            </td>
+                        {% endif %}
+                    </tr>
 
-					{% if addImage and imageFloating == 'below' %}
-						<tr>
-							<td>
-								{{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
-							</td>
-						</tr>
-					{% endif %}
-				</table>
-			</td>
-		</tr>
-	{% endspaceless %}
+                    {% if addImage and imageFloating == 'below' %}
+                        <tr>
+                            <td>
+                                {{ mce.image(imageSource, { 'alt': imageAlt, 'float': imageFloating, 'size': imageSize, 'margin': imageMargin, 'url': imageUrl, 'caption': imageCaption }) }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    {% endspaceless %}
 {% endblock %}
