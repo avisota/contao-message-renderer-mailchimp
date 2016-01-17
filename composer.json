@@ -50,12 +50,6 @@
         "contao": {
             "sources": {
                 "contao": "system/modules/avisota-message-renderer-mailchimp"
-            },
-            "transifex": {
-                "project": "avisota-contao",
-                "prefix": "contao-message-renderer-mailchimp-",
-                "languages_cto": "contao/languages",
-                "languages_tx": ".tx"
             }
         },
         "branch-alias": {
