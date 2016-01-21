@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="php" date="2014-05-06T04:00:38+02:00" original="avisota_mailchimp_template" source-language="en" target-language="es">
+    <body>
+      <trans-unit id="avisota_mailchimp_template.templates">
+        <source>Templates (non-responsive)</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-1-2">
+        <source>1 column - 2 columns</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-1-2-leftsidebar">
+        <source>1 column - 2 columns - sidebar left</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-1-2-rightsidebar">
+        <source>1 column - 2 columns - sidebar right</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-2-1">
+        <source>2 columns - 1 column</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-2-1-leftsidebar">
+        <source>2 columns - 1 column - sidebar left</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-2-1-rightsidebar">
+        <source>2 columns - 1 column - sidebar right</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.2col-basic2column">
+        <source>2 columns</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-1-3">
+        <source>1 column - 3 columns</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-1-3-asym">
+        <source>1 column - 3 columns asymmetric</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-1-3-leftsidebar">
+        <source>1 column - 3 columns - sidebar left</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-1-3-rightsidebar">
+        <source>1 column - 3 columns - sidebar right</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-3-1">
+        <source>3 columns - 1 column</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-3-1-asym">
+        <source>3 columns asymmetric - 1 column</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-basic3column">
+        <source>3 columns</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.3col-basic3column-asym">
+        <source>3 columns asymmetric</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.transactional-basic">
+        <source>Transactional</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.templates-responsive">
+        <source>Templates (responsive)</source>
+        
+      </trans-unit>
+      <trans-unit id="avisota_mailchimp_template.templates-plain">
+        <source>Templates (plain text)</source>
+        
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
