@@ -42,7 +42,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -69,7 +70,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -79,9 +81,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -102,7 +108,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-leftsidebar'] = ar
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -134,7 +141,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-leftsidebar'] = ar
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -144,9 +152,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-leftsidebar'] = ar
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -167,7 +179,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-rightsidebar'] = a
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -199,7 +212,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-rightsidebar'] = a
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -209,9 +223,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-1-2-rightsidebar'] = a
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -232,7 +250,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-2-1'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -259,7 +278,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-2-1'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -269,9 +289,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-2-1'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -292,7 +316,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-basic2column'] = array
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -314,7 +339,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-basic2column'] = array
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -324,9 +350,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['2col-basic2column'] = array
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -347,7 +377,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -379,7 +410,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -389,9 +421,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -412,7 +448,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-asym'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -444,7 +481,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-asym'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -454,9 +492,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-asym'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -477,7 +519,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-leftsidebar'] = ar
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -514,7 +557,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-leftsidebar'] = ar
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -524,9 +568,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-leftsidebar'] = ar
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -547,7 +595,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-rightsidebar'] = a
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -584,7 +633,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-rightsidebar'] = a
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -594,9 +644,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-1-3-rightsidebar'] = a
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -617,7 +671,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -649,7 +704,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -659,9 +715,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -682,7 +742,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1-asym'] = array(
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -714,7 +775,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1-asym'] = array(
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -724,9 +786,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-3-1-asym'] = array(
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -747,7 +813,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -774,7 +841,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -784,9 +852,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column'] = array
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -807,7 +879,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column-asym'] = 
         ),
         'viewonline'   => array(
             'xpath'   => '//div[@mc:edit="std_preheader_links"]',
-            'content' => '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
+            'content' =>
+                '{% if view_online_link is defined and view_online_link|length > 0 %}##view_online_link##{% endif %}',
         ),
         'header'       => array(
             'xpath'             => '//table[@id="templateHeader"]//img[@mc:edit="header_image"]/..',
@@ -834,7 +907,8 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column-asym'] = 
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="social"]/..',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'rewards'      => array(
@@ -844,9 +918,13 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['3col-basic3column-asym'] = 
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),
@@ -876,14 +954,19 @@ $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE']['templates']['transactional-basic'] = arr
             'content' => '{% if link.text %}##link.text##{% else %}## "##link.text##" ##{% endif %}',
         ),
         'footer'       => array(
-            'xpath'             => '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
+            'xpath'             =>
+                '//table[@id="templateFooter"]//td[@class="footerContent"]//div[@mc:edit="std_footer"]/..',
             'preferredElements' => array('text', 'image'),
         ),
         'subscription' => array(
             'xpath'         => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]',
-            'content'       => '{% if recipient.manage_subscription_link is defined and recipient.manage_subscription_link.url|length > 0 %}<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
-                               '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
-                               '{% endif %}',
+            'content'       =>
+                '{% if recipient.manage_subscription_link is defined and ' .
+                'recipient.manage_subscription_link.url|length > 0 %}' .
+                '<a href="##recipient.manage_subscription_link.url##">##recipient.manage_subscription_link.text##</a>' .
+                '{% elseif recipient.unsubscribe_link is defined and recipient.unsubscribe_link.url|length > 0 %}' .
+                '<a href="##recipient.unsubscribe_link.url##">##recipient.unsubscribe_link.text##</a>' .
+                '{% endif %}',
             'ifEmptyRemove' => '//table[@id="templateFooter"]//td[@class="footerContent"]//td[@id="utility"]/..',
         ),
     ),

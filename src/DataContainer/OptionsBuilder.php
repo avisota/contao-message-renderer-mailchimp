@@ -33,298 +33,291 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class OptionsBuilder implements EventSubscriberInterface
 {
-	/**
-	 * Returns an array of event names this subscriber wants to listen to.
-	 *
-	 * The array keys are event names and the value can be:
-	 *
-	 *  * The method name to call (priority defaults to 0)
-	 *  * An array composed of the method name to call and the priority
-	 *  * An array of arrays composed of the method names to call and respective
-	 *    priorities, or 0 if unset
-	 *
-	 * For instance:
-	 *
-	 *  * array('eventName' => 'methodName')
-	 *  * array('eventName' => array('methodName', $priority))
-	 *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
-	 *
-	 * @return array The event names to listen to
+    /**
+     * Returns an array of event names this subscriber wants to listen to.
+     *
+     * The array keys are event names and the value can be:
+     *
+     *  * The method name to call (priority defaults to 0)
+     *  * An array composed of the method name to call and the priority
+     *  * An array of arrays composed of the method names to call and respective
+     *    priorities, or 0 if unset
+     *
+     * For instance:
+     *
+     *  * array('eventName' => 'methodName')
+     *  * array('eventName' => array('methodName', $priority))
+     *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
+     *
+     * @return array The event names to listen to
      */
-	static public function getSubscribedEvents()
-	{
-		return array(
-			// Layout related options
-			'avisota.create-mailchimp-template-options'   => 'createMailChimpTemplateOptions',
-			'avisota.create-content-type-options'         => 'createContentTypeOptions',
-			// Message content related options
-			MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(array('createMessageContentCellOptions', 100)),
-			MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(array('createCellContentTypeOptions', -100)),
-		);
-	}
+    public static function getSubscribedEvents()
+    {
+        return array(
+            // Layout related options
+            'avisota.create-mailchimp-template-options'        => 'createMailChimpTemplateOptions',
+            'avisota.create-content-type-options'              => 'createContentTypeOptions',
+            // Message content related options
+            MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(array('createMessageContentCellOptions', 100)),
+            MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(array('createCellContentTypeOptions', -100)),
+        );
+    }
 
-	/**
-	 * @param CreateOptionsEvent $event
+    /**
+     * @param CreateOptionsEvent $event
      */
-	public function createMailChimpTemplateOptions(CreateOptionsEvent $event)
-	{
-		$this->getMailChimpTemplateOptions($event->getOptions());
-	}
+    public function createMailChimpTemplateOptions(CreateOptionsEvent $event)
+    {
+        $this->getMailChimpTemplateOptions($event->getOptions());
+    }
 
-	/**
-	 * @param array $options
-	 *
-	 * @return array
+    /**
+     * @param array $options
+     *
+     * @return array
      */
     public function getMailChimpTemplateOptions($options = array())
-	{
-		/** @var EventDispatcher $eventDispatcher */
-		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
+    {
+        /** @var EventDispatcher $eventDispatcher */
+        $eventDispatcher = $GLOBALS['container']['event-dispatcher'];
 
-		$eventDispatcher->dispatch(
-			ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE,
-			new LoadLanguageFileEvent('avisota_mailchimp_template')
-		);
+        $eventDispatcher->dispatch(
+            ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE,
+            new LoadLanguageFileEvent('avisota_mailchimp_template')
+        );
 
-		foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $group => $mailChimpTemplates) {
-			if (isset($GLOBALS['TL_LANG']['avisota_mailchimp_template'][$group])) {
-				$groupLabel = $GLOBALS['TL_LANG']['avisota_mailchimp_template'][$group];
-			}
-			else {
-				$groupLabel = $group;
-			}
-			foreach ($mailChimpTemplates as $name => $mailChimpTemplate) {
-				if (isset($GLOBALS['TL_LANG']['avisota_mailchimp_template'][$name])) {
-					$label = $GLOBALS['TL_LANG']['avisota_mailchimp_template'][$name];
-				}
-				else {
-					$label = $name;
-				}
+        foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $group => $mailChimpTemplates) {
+            if (isset($GLOBALS['TL_LANG']['avisota_mailchimp_template'][$group])) {
+                $groupLabel = $GLOBALS['TL_LANG']['avisota_mailchimp_template'][$group];
+            } else {
+                $groupLabel = $group;
+            }
+            foreach ($mailChimpTemplates as $name => $mailChimpTemplate) {
+                if (isset($GLOBALS['TL_LANG']['avisota_mailchimp_template'][$name])) {
+                    $label = $GLOBALS['TL_LANG']['avisota_mailchimp_template'][$name];
+                } else {
+                    $label = $name;
+                }
 
-				$label .= sprintf(' [%s]', strtoupper($mailChimpTemplate['mode']));
+                $label .= sprintf(' [%s]', strtoupper($mailChimpTemplate['mode']));
 
-				$options[$groupLabel][$group . ':' . $name] = $label;
-			}
-		}
-		return $options;
-	}
+                $options[$groupLabel][$group . ':' . $name] = $label;
+            }
+        }
+        return $options;
+    }
 
-	/**
-	 * @param CreateOptionsEvent $event
+    /**
+     * @param CreateOptionsEvent $event
      */
-	public function createContentTypeOptions(CreateOptionsEvent $event)
-	{
-		/** @var DcCompat $dc */
-		$dc = $event->getDataContainer();
-		/** @var EntityModel $model */
-		$model = $dc->getModel();
-		/** @var Layout $layout */
-		$layout = $model->getEntity();
+    public function createContentTypeOptions(CreateOptionsEvent $event)
+    {
+        /** @var DcCompat $dc */
+        $dc = $event->getDataContainer();
+        /** @var EntityModel $model */
+        $model = $dc->getModel();
+        /** @var Layout $layout */
+        $layout = $model->getEntity();
 
-		if (!$layout || $layout->getType() != 'mailChimp') {
-			return;
-		}
+        if (!$layout || $layout->getType() != 'mailChimp') {
+            return;
+        }
 
-		$options = $event->getOptions();
+        $options = $event->getOptions();
 
-		$allTypes = $options->getArrayCopy();
-		$options->exchangeArray(array());
+        $allTypes = $options->getArrayCopy();
+        $options->exchangeArray(array());
 
-		list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
-		if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
-			$config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
+        list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
+        if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
+            $config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
 
-			foreach ($config['cells'] as $cellName => $cellConfig) {
-				if (!isset($cellConfig['content'])) {
-					if (!isset($options[$cellName])) {
-						$options[$cellName] = array();
-					}
+            foreach ($config['cells'] as $cellName => $cellConfig) {
+                if (!isset($cellConfig['content'])) {
+                    if (!isset($options[$cellName])) {
+                        $options[$cellName] = array();
+                    }
 
-					foreach ($allTypes as $elements) {
-						foreach ($elements as $elementType => $elementLabel) {
-							$options[$cellName][$cellName . ':' . $elementType] = $elementLabel;
-						}
-					}
-				}
-			}
-		}
+                    foreach ($allTypes as $elements) {
+                        foreach ($elements as $elementType => $elementLabel) {
+                            $options[$cellName][$cellName . ':' . $elementType] = $elementLabel;
+                        }
+                    }
+                }
+            }
+        }
 
-		$event->preventDefault();
-	}
+        $event->preventDefault();
+    }
 
-	/**
-	 * Get a list of areas from the parent category.
-	 *
-	 * @param CreateOptionsEvent $event
-	 *
-	 * @internal param DC_General $dc
-	 */
-	public function createMessageContentCellOptions(CreateOptionsEvent $event)
-	{
-		$this->getMessageContentCellOptions($event->getDataContainer(), $event->getOptions(), $event);
-	}
+    /**
+     * Get a list of areas from the parent category.
+     *
+     * @param CreateOptionsEvent $event
+     *
+     * @internal param DC_General $dc
+     */
+    public function createMessageContentCellOptions(CreateOptionsEvent $event)
+    {
+        $this->getMessageContentCellOptions($event->getDataContainer(), $event->getOptions(), $event);
+    }
 
-	/**
-	 * Get a list of areas from the parent category.
-	 *
-	 * @param DcCompat           $dc
-	 *
-	 * @param array              $options
-	 * @param CreateOptionsEvent $event
-	 *
-	 * @return array
-	 */
-	public function getMessageContentCellOptions($dc, $options = array(), CreateOptionsEvent $event = null)
-	{
-		if ($dc instanceof DcCompat) {
-			/** @var EntityModel $model */
-			$model = $dc->getModel();
-			/** @var \Avisota\Contao\Entity\MessageContent $content */
-			$content = $model->getEntity();
-			$message = $content->getMessage();
-			$layout  = $message->getLayout();
+    /**
+     * Get a list of areas from the parent category.
+     *
+     * @param DcCompat           $dc
+     *
+     * @param array              $options
+     * @param CreateOptionsEvent $event
+     *
+     * @return array
+     */
+    public function getMessageContentCellOptions($dc, $options = array(), CreateOptionsEvent $event = null)
+    {
+        if ($dc instanceof DcCompat) {
+            /** @var EntityModel $model */
+            $model = $dc->getModel();
+            /** @var \Avisota\Contao\Entity\MessageContent $content */
+            $content = $model->getEntity();
+            $message = $content->getMessage();
+            $layout  = $message->getLayout();
 
-			if (!$layout || $layout->getType() != 'mailChimp') {
-				return $options;
-			}
+            if (!$layout || $layout->getType() != 'mailChimp') {
+                return $options;
+            }
 
-			list($templateGroup, $templateName) = explode(':', $layout->getMailchimpTemplate());
-			$mailChimpTemplate = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$templateGroup][$templateName];
-			$cells             = $mailChimpTemplate['cells'];
-			$rows              = isset($mailChimpTemplate['rows']) ? $mailChimpTemplate['rows'] : array();
+            list($templateGroup, $templateName) = explode(':', $layout->getMailchimpTemplate());
+            $mailChimpTemplate = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$templateGroup][$templateName];
+            $cells             = $mailChimpTemplate['cells'];
+            $rows              = isset($mailChimpTemplate['rows']) ? $mailChimpTemplate['rows'] : array();
 
-			$repeatableCells = array();
-			foreach ($rows as $row) {
-				$repeatableCells = array_merge($repeatableCells, $row['affectedCells']);
-			}
+            $repeatableCells = array();
+            foreach ($rows as $row) {
+                $repeatableCells = array_merge($repeatableCells, $row['affectedCells']);
+            }
 
-			foreach ($cells as $cellName => $cell) {
-				if (!isset($cell['content'])) {
-					if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
-						$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
-					}
-					else {
-						$label = $cellName;
-					}
+            foreach ($cells as $cellName => $cell) {
+                if (!isset($cell['content'])) {
+                    if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
+                        $label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+                    } else {
+                        $label = $cellName;
+                    }
 
-					$options[$cellName] = $label;
-				}
-			}
+                    $options[$cellName] = $label;
+                }
+            }
 
-			if ($event) {
-				$event->preventDefault();
-			}
-		}
-		else {
-			foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $templates) {
-				foreach ($templates as $template) {
-					foreach ($template['cells'] as $cellName => $cell) {
-						if (!isset($options[$cellName])) {
-							if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
-								$label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
-							}
-							else {
-								$label = $cellName;
-							}
+            if ($event) {
+                $event->preventDefault();
+            }
+        } else {
+            foreach ($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'] as $templates) {
+                foreach ($templates as $template) {
+                    foreach ($template['cells'] as $cellName => $cell) {
+                        if (!isset($options[$cellName])) {
+                            if (isset($GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName])) {
+                                $label = $GLOBALS['TL_LANG']['orm_avisota_message_content']['cells'][$cellName];
+                            } else {
+                                $label = $cellName;
+                            }
 
-							$options[$cellName] = $label;
-						}
-					}
-				}
-			}
+                            $options[$cellName] = $label;
+                        }
+                    }
+                }
+            }
 
-			if ($event) {
-				$event->preventDefault();
-			}
-		}
+            if ($event) {
+                $event->preventDefault();
+            }
+        }
 
-		return $options;
-	}
+        return $options;
+    }
 
-	/**
-	 * @param CreateOptionsEvent $event
-	 *
-	 * @internal param Layout $layout
-	 */
-	public function createCellContentTypeOptions(CreateOptionsEvent $event)
-	{
-		/** @var DcCompat $dc */
-		$dc = $event->getDataContainer();
-		/** @var EntityModel $model */
-		$model  = $dc->getModel();
-		$entity = $model->getEntity();
+    /**
+     * @param CreateOptionsEvent $event
+     *
+     * @internal param Layout $layout
+     */
+    public function createCellContentTypeOptions(CreateOptionsEvent $event)
+    {
+        /** @var DcCompat $dc */
+        $dc = $event->getDataContainer();
+        /** @var EntityModel $model */
+        $model  = $dc->getModel();
+        $entity = $model->getEntity();
 
-		if (!$entity instanceof MessageContent) {
-			return;
-		}
+        if (!$entity instanceof MessageContent) {
+            return;
+        }
 
-		$this->getCellContentTypeOptions(
-			$event->getOptions(),
-			$entity
-		);
-	}
+        $this->getCellContentTypeOptions(
+            $event->getOptions(),
+            $entity
+        );
+    }
 
-	/**
-	 * @param array|\ArrayObject $options
-	 * @param MessageContent     $content
-	 *
-	 * @return array|\ArrayObject
-	 */
-	public function getCellContentTypeOptions($options = array(), MessageContent $content)
-	{
-		$message = $content->getMessage();
-		$layout  = $message->getLayout();
+    /**
+     * @param array|\ArrayObject $options
+     * @param MessageContent     $content
+     *
+     * @return array|\ArrayObject
+     */
+    public function getCellContentTypeOptions($options = array(), MessageContent $content = null)
+    {
+        $message = $content->getMessage();
+        $layout  = $message->getLayout();
 
-		if (!$layout || $layout->getType() != 'mailChimp') {
-			return $options;
-		}
+        if (!$layout || $layout->getType() != 'mailChimp') {
+            return $options;
+        }
 
-		$allowedTypes = array($content->getType());
+        $allowedTypes = array($content->getType());
 
-		list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
-		if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
-			$config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
+        list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
+        if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
+            $config = $GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate];
 
-			if (isset($config['cells'][$content->getCell()])) {
-				$cellConfig = $config['cells'][$content->getCell()];
+            if (isset($config['cells'][$content->getCell()])) {
+                $cellConfig = $config['cells'][$content->getCell()];
 
-				if (!isset($cellConfig['content'])) {
-					if (isset($cellConfig['preferredElements'])) {
-						$allowedTypes = array_merge($allowedTypes, $cellConfig['preferredElements']);
-					}
-					else {
-						foreach ($GLOBALS['TL_MCE'] as $elements) {
-							foreach ($elements as $elementType) {
-								$allowedTypes[] = $elementType;
-							}
-						}
-					}
-				}
-			}
-		}
+                if (!isset($cellConfig['content'])) {
+                    if (isset($cellConfig['preferredElements'])) {
+                        $allowedTypes = array_merge($allowedTypes, $cellConfig['preferredElements']);
+                    } else {
+                        foreach ($GLOBALS['TL_MCE'] as $elements) {
+                            foreach ($elements as $elementType) {
+                                $allowedTypes[] = $elementType;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-		foreach ($layout->getAllowedCellContents() as $allowedCellContentType) {
-			list($cell, $elementType) = explode(':', $allowedCellContentType);
-			if ($cell == $content->getCell()) {
-				$allowedTypes[] = $elementType;
-			}
-		}
+        foreach ($layout->getAllowedCellContents() as $allowedCellContentType) {
+            list($cell, $elementType) = explode(':', $allowedCellContentType);
+            if ($cell == $content->getCell()) {
+                $allowedTypes[] = $elementType;
+            }
+        }
 
-		foreach ($options as $group => &$values) {
-			if (is_array($values)) {
-				foreach ($values as $key => $value) {
-					if (!in_array($key, $allowedTypes)) {
-						unset($values[$key]);
-					}
-				}
-			}
-			else {
-				if (!in_array($group, $allowedTypes)) {
-					unset($options[$group]);
-				}
-			}
-		}
+        foreach ($options as $group => &$values) {
+            if (is_array($values)) {
+                foreach ($values as $key => $value) {
+                    if (!in_array($key, $allowedTypes)) {
+                        unset($values[$key]);
+                    }
+                }
+            } else {
+                if (!in_array($group, $allowedTypes)) {
+                    unset($options[$group]);
+                }
+            }
+        }
 
-		return $options;
-	}
+        return $options;
+    }
 }
