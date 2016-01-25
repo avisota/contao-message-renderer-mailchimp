@@ -44,6 +44,11 @@
             "Avisota\\Contao\\Message\\Renderer\\MailChimp\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Avisota\\Test\\Contao\\Message\\Renderer\\MailChimp\\": "tests/Test/"
+        }
+    },
     "extra": {
         "contao": {
             "sources": {

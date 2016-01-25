@@ -51,7 +51,7 @@ class MailChimpRenderer implements EventSubscriberInterface
      *
      * @return array The event names to listen to
      */
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(
             AvisotaMessageEvents::RENDER_MESSAGE         => array(
@@ -72,6 +72,7 @@ class MailChimpRenderer implements EventSubscriberInterface
      * @param RenderMessageEvent $event
      *
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.LongVariables)
      */
     public function renderMessage(RenderMessageEvent $event)
     {
@@ -100,7 +101,7 @@ class MailChimpRenderer implements EventSubscriberInterface
      * @return string
      * @internal param MessageContent $content
      * @internal param RecipientInterface $recipient
-     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function renderHeadline(RenderMessageContentEvent $event)
     {
@@ -139,6 +140,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderHyperlink(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'hyperlink' || $event->getRenderedContent()) {
@@ -152,7 +155,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -174,6 +177,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderImage(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'image' || $event->getRenderedContent()) {
@@ -187,7 +192,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -209,6 +214,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderList(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'list' || $event->getRenderedContent()) {
@@ -222,7 +229,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -244,6 +251,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderTable(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'table' || $event->getRenderedContent()) {
@@ -257,7 +266,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -279,6 +288,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderText(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'text' || $event->getRenderedContent()) {
@@ -292,7 +303,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 

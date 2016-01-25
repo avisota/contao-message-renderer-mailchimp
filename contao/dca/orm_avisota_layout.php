@@ -13,30 +13,30 @@
  * @filesource
  */
 
-
 /**
  * Table orm_avisota_layout
  * Entity Avisota\Contao:Layout
  */
 $GLOBALS['TL_DCA']['orm_avisota_layout']['metapalettes']['mailChimp'] = array
 (
-	'layout'    => array('type', 'title', 'alias', 'preview'),
-	'template'  => array('mailChimpTemplate', 'clearStyles', 'stylesheets'),
-	'structure' => array('allowedCellContents'),
+    'layout'    => array('type', 'title', 'alias', 'preview'),
+    'template'  => array('mailChimpTemplate', 'clearStyles', 'stylesheets'),
+    'structure' => array('allowedCellContents'),
 );
 
 $GLOBALS['TL_DCA']['orm_avisota_layout']['fields']['mailChimpTemplate'] = array
 (
-	'label'            => &$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate'],
-	'exclude'          => true,
-	'inputType'        => 'select',
-	'options_callback' => \ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEventCallbackFactory::createCallback(
-		'avisota.create-mailchimp-template-options',
-		'Avisota\Contao\Core\Event\CreateOptionsEvent'
-	),
-	'eval'             => array(
-		'mandatory'          => true,
-		'includeBlankOption' => true,
-		'submitOnChange'     => true,
-	),
+    'label'            => &$GLOBALS['TL_LANG']['orm_avisota_layout']['mailChimpTemplate'],
+    'exclude'          => true,
+    'inputType'        => 'select',
+    'eval'             => array(
+        'mandatory'          => true,
+        'includeBlankOption' => true,
+        'submitOnChange'     => true,
+    ),
+    'options_callback' =>
+        \ContaoCommunityAlliance\Contao\Events\CreateOptions\CreateOptionsEventCallbackFactory::createCallback(
+            'avisota.create-mailchimp-template-options',
+            'Avisota\Contao\Core\Event\CreateOptionsEvent'
+        ),
 );
