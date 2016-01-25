@@ -405,12 +405,14 @@ class BlueprintRenderer implements MessageRendererInterface
      */
     public function renderCell(Message $message, $cell, Layout $layout = null)
     {
+        global $container;
+
         if (!$layout || $layout->getType() != 'mailChimp') {
             return null;
         }
 
         /** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
-        $renderer = $GLOBALS['container']['avisota.message.renderer'];
+        $renderer = $container['avisota.message.renderer'];
 
         return $renderer->renderCell($message, $cell, $layout);
     }
@@ -427,8 +429,10 @@ class BlueprintRenderer implements MessageRendererInterface
         /** @noinspection PhpDocSignatureInspection */
         Layout $layout = null
     ) {
+        global $container;
+
         /** @var \Avisota\Contao\Message\Core\Renderer\MessageRendererInterface $renderer */
-        $renderer = $GLOBALS['container']['avisota.message.renderer'];
+        $renderer = $container['avisota.message.renderer'];
 
         return $renderer->renderContent($messageContent, $layout);
     }

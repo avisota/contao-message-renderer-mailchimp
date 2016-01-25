@@ -140,6 +140,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderHyperlink(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'hyperlink' || $event->getRenderedContent()) {
@@ -153,7 +155,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -175,6 +177,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderImage(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'image' || $event->getRenderedContent()) {
@@ -188,7 +192,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -210,6 +214,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderList(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'list' || $event->getRenderedContent()) {
@@ -223,7 +229,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -245,6 +251,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderTable(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'table' || $event->getRenderedContent()) {
@@ -258,7 +266,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
@@ -280,6 +288,8 @@ class MailChimpRenderer implements EventSubscriberInterface
      */
     public function renderText(RenderMessageContentEvent $event)
     {
+        global $container;
+
         $content = $event->getMessageContent();
 
         if ($content->getType() != 'text' || $event->getRenderedContent()) {
@@ -293,7 +303,7 @@ class MailChimpRenderer implements EventSubscriberInterface
         }
 
         /** @var EntityAccessor $entityAccessor */
-        $entityAccessor = $GLOBALS['container']['doctrine.orm.entityAccessor'];
+        $entityAccessor = $container['doctrine.orm.entityAccessor'];
 
         $context = $entityAccessor->getProperties($content);
 
