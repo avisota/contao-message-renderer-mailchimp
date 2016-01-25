@@ -31,6 +31,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  * Class BlueprintRenderer
  *
  * @package Avisota\Contao\Message\Renderer\MailChimp\Renderer
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class BlueprintRenderer implements MessageRendererInterface
 {
@@ -43,6 +44,11 @@ class BlueprintRenderer implements MessageRendererInterface
      *
      * @return PreRenderedMessageTemplateInterface
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.LongVariables)
      */
     public function renderMessage(Message $message, Layout $layout = null)
     {

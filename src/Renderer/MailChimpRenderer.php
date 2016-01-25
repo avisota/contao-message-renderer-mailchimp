@@ -72,6 +72,7 @@ class MailChimpRenderer implements EventSubscriberInterface
      * @param RenderMessageEvent $event
      *
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.LongVariables)
      */
     public function renderMessage(RenderMessageEvent $event)
     {
@@ -100,7 +101,7 @@ class MailChimpRenderer implements EventSubscriberInterface
      * @return string
      * @internal param MessageContent $content
      * @internal param RecipientInterface $recipient
-     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function renderHeadline(RenderMessageContentEvent $event)
     {

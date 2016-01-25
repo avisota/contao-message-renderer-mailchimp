@@ -30,6 +30,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * Class OptionsBuilder
  *
  * @package Avisota\Contao\Message\Renderer\MailChimp\DataContainer
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class OptionsBuilder implements EventSubscriberInterface
 {
@@ -75,6 +76,7 @@ class OptionsBuilder implements EventSubscriberInterface
      * @param array $options
      *
      * @return array
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function getMailChimpTemplateOptions($options = array())
     {
@@ -109,6 +111,8 @@ class OptionsBuilder implements EventSubscriberInterface
 
     /**
      * @param CreateOptionsEvent $event
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ShortVariables)
      */
     public function createContentTypeOptions(CreateOptionsEvent $event)
     {
@@ -169,6 +173,10 @@ class OptionsBuilder implements EventSubscriberInterface
      *
      * @param array              $options
      * @param CreateOptionsEvent $event
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ShortVariable)
+     * @SuppressWarnings(PHPMD.Superglobals)
      *
      * @return array
      */
@@ -240,6 +248,7 @@ class OptionsBuilder implements EventSubscriberInterface
      * @param CreateOptionsEvent $event
      *
      * @internal param Layout $layout
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     public function createCellContentTypeOptions(CreateOptionsEvent $event)
     {
@@ -264,6 +273,10 @@ class OptionsBuilder implements EventSubscriberInterface
      * @param MessageContent     $content
      *
      * @return array|\ArrayObject
+     * @SuppressWarnings(PHPMD.LongVariable)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function getCellContentTypeOptions($options = array(), MessageContent $content = null)
     {
@@ -307,7 +320,9 @@ class OptionsBuilder implements EventSubscriberInterface
         foreach ($options as $group => &$values) {
             if (is_array($values)) {
                 foreach ($values as $key => $value) {
-                    if (!in_array($key, $allowedTypes)) {
+                    if (!in_array($key, $allowedTypes)
+                        && $value
+                    ) {
                         unset($values[$key]);
                     }
                 }
