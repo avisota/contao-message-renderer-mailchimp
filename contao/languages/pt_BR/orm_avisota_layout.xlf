@@ -3,10 +3,12 @@
     <body>
       <trans-unit id="orm_avisota_layout.mailChimpTemplate.0">
         <source>Mailchimp template</source>
+        <target>modelo MailChimp</target>
         
       </trans-unit>
       <trans-unit id="orm_avisota_layout.mailChimpTemplate.1">
         <source>Chose the basic structure and template for this layout.</source>
+        <target>Escolha a estrutura básica e o modelo para esse layout.</target>
         
       </trans-unit>
       <trans-unit id="orm_avisota_layout.mailChimp">

@@ -3,10 +3,12 @@
     <body>
       <trans-unit id="MOD.avisota-message-renderer-mailchimp.0">
         <source>Avisota - Message renderer &quot;MailChimp&quot;</source>
+        <target>Avisota - Processador de mensagem &quot;MailChimp&quot;</target>
         
       </trans-unit>
       <trans-unit id="MOD.avisota-message-renderer-mailchimp.1">
         <source>Message renderer for Avisota that use MailChimp templates.</source>
+        <target>Processador de mensagem para Avisota que usam modelos MailChimp.</target>
         
       </trans-unit>
     </body>
