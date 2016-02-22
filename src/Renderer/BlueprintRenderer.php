@@ -23,6 +23,7 @@ use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
 use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
+use Bit3\StringBuilder\StringBuilder;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -142,7 +143,7 @@ class BlueprintRenderer implements MessageRendererInterface
                     }
                 } else {
                     if (!empty($cellContents[$cellName])) {
-                        /** @var \StringBuilder $cellContentRow */
+                        /** @var StringBuilder $cellContentRow */
                         foreach ($cellContents[$cellName] as $index => $cellContentRow) {
                             $cellContentRow    = mb_convert_encoding($cellContentRow, 'HTML-ENTITIES', 'UTF-8');
                             $cellContentRowDoc = new \DOMDocument('1.0', 'UTF-8');
@@ -281,7 +282,7 @@ class BlueprintRenderer implements MessageRendererInterface
 
             $headers = new \ArrayObject();
 
-            $styles      = new \StringBuilder();
+            $styles      = new StringBuilder();
             $stylesheets = $layout->getStylesheetPaths();
             foreach ($stylesheets as $stylesheet) {
                 $file = new \File($stylesheet);
@@ -401,7 +402,7 @@ class BlueprintRenderer implements MessageRendererInterface
      *
      * @param Layout  $layout
      *
-     * @return \StringBuilder
+     * @return StringBuilder
      */
     public function renderCell(Message $message, $cell, Layout $layout = null)
     {

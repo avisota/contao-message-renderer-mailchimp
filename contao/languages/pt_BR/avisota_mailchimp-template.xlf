@@ -3,10 +3,12 @@
     <body>
       <trans-unit id="avisota_mailchimp_template.templates">
         <source>Templates (non-responsive)</source>
+        <target>Templates (não responsivos)</target>
         
       </trans-unit>
       <trans-unit id="avisota_mailchimp_template.2col-1-2">
         <source>1 column - 2 columns</source>
+        <target>1 coluna - 2 colunas</target>
         
       </trans-unit>
       <trans-unit id="avisota_mailchimp_template.2col-1-2-leftsidebar">
