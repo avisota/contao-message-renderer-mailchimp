@@ -111,7 +111,9 @@ class OptionsBuilder implements EventSubscriberInterface
     }
 
     /**
-     * @param CreateOptionsEvent $event
+     * @param CreateOptionsEvent|GetPropertyOptionsEvent $event
+     * @param                                            $name
+     * @param EventDispatcher                            $eventDispatcher
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.ShortVariables)
      */
