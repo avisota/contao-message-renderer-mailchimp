@@ -57,11 +57,22 @@ class OptionsBuilder implements EventSubscriberInterface
     {
         return array(
             // Layout related options
-            'avisota.create-mailchimp-template-options'        => 'createMailChimpTemplateOptions',
-            GetPropertyOptionsEvent::NAME              => 'createContentTypeOptions',
+            'avisota.create-mailchimp-template-options' => array(
+                array('createMailChimpTemplateOptions'),
+            ),
+
+            GetPropertyOptionsEvent::NAME                      => array(
+                array('createContentTypeOptions'),
+            ),
+
             // Message content related options
-            MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(array('createMessageContentCellOptions', 100)),
-            MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(array('createCellContentTypeOptions', -100)),
+            MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(
+                array('createMessageContentCellOptions', 100),
+            ),
+            
+            MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(
+                array('createCellContentTypeOptions', -100),
+            ),
         );
     }
 
@@ -122,7 +133,8 @@ class OptionsBuilder implements EventSubscriberInterface
     public function createContentTypeOptions(GetPropertyOptionsEvent $event, $name, EventDispatcher $eventDispatcher)
     {
         if ($event->getModel()->getProviderName() !== 'orm_avisota_layout'
-            || $event->getPropertyName() !== 'allowedCellContents') {
+            || $event->getPropertyName() !== 'allowedCellContents'
+        ) {
             return;
         }
 
@@ -132,7 +144,7 @@ class OptionsBuilder implements EventSubscriberInterface
         }
 
         $allTypes = $event->getOptions();
-        $options = array();
+        $options  = array();
 
         list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
         if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
