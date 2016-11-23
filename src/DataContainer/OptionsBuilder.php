@@ -16,7 +16,6 @@
 namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 
 use Avisota\Contao\Core\Event\CreateOptionsEvent;
-use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\MessageEvents;
 use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
