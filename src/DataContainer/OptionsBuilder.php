@@ -69,7 +69,7 @@ class OptionsBuilder implements EventSubscriberInterface
             MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(
                 array('createMessageContentCellOptions', 100),
             ),
-            
+
             MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(
                 array('createCellContentTypeOptions', -100),
             ),
@@ -92,8 +92,10 @@ class OptionsBuilder implements EventSubscriberInterface
      */
     public function getMailChimpTemplateOptions($options = array())
     {
+        global $container;
+
         /** @var EventDispatcher $eventDispatcher */
-        $eventDispatcher = $GLOBALS['container']['event-dispatcher'];
+        $eventDispatcher = $container['event-dispatcher'];
 
         $eventDispatcher->dispatch(
             ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE,
