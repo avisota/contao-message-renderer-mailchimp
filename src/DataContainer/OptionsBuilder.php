@@ -16,7 +16,6 @@
 namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 
 use Avisota\Contao\Core\Event\CreateOptionsEvent;
-use Avisota\Contao\Entity\Layout;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\MessageEvents;
 use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
@@ -69,7 +68,7 @@ class OptionsBuilder implements EventSubscriberInterface
             MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(
                 array('createMessageContentCellOptions', 100),
             ),
-            
+
             MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(
                 array('createCellContentTypeOptions', -100),
             ),
@@ -92,8 +91,10 @@ class OptionsBuilder implements EventSubscriberInterface
      */
     public function getMailChimpTemplateOptions($options = array())
     {
+        global $container;
+
         /** @var EventDispatcher $eventDispatcher */
-        $eventDispatcher = $GLOBALS['container']['event-dispatcher'];
+        $eventDispatcher = $container['event-dispatcher'];
 
         $eventDispatcher->dispatch(
             ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE,

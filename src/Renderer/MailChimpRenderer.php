@@ -15,11 +15,9 @@
 
 namespace Avisota\Contao\Message\Renderer\MailChimp\Renderer;
 
-use Avisota\Contao\Core\Message\Renderer;
 use Avisota\Contao\Message\Core\Event\AvisotaMessageEvents;
 use Avisota\Contao\Message\Core\Event\RenderMessageContentEvent;
 use Avisota\Contao\Message\Core\Event\RenderMessageEvent;
-use Contao\Doctrine\ORM\Entity;
 use Contao\Doctrine\ORM\EntityAccessor;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
