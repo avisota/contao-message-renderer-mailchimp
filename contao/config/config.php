@@ -14,12 +14,6 @@
  */
 
 /**
- * Events
- */
-$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Avisota\Contao\Message\Renderer\MailChimp\DataContainer\OptionsBuilder';
-$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Avisota\Contao\Message\Renderer\MailChimp\Renderer\MailChimpRenderer';
-
-/**
  * Message renderer
  */
 $GLOBALS['AVISOTA_MESSAGE_RENDERER'][] = 'mailChimp';

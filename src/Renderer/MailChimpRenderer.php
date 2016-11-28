@@ -54,9 +54,10 @@ class MailChimpRenderer implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            AvisotaMessageEvents::RENDER_MESSAGE         => array(
+            AvisotaMessageEvents::RENDER_MESSAGE => array(
                 array('renderMessage', 100),
             ),
+
             AvisotaMessageEvents::RENDER_MESSAGE_CONTENT => array(
                 array('renderHeadline', 100),
                 array('renderHyperlink', 100),
