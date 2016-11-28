@@ -23,6 +23,7 @@ use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
 use ContaoCommunityAlliance\DcGeneral\Contao\Compatibility\DcCompat;
+use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\Event\GetPropertyOptionsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -56,11 +57,22 @@ class OptionsBuilder implements EventSubscriberInterface
     {
         return array(
             // Layout related options
-            'avisota.create-mailchimp-template-options'        => 'createMailChimpTemplateOptions',
-            'avisota.create-content-type-options'              => 'createContentTypeOptions',
+            'avisota.create-mailchimp-template-options' => array(
+                array('createMailChimpTemplateOptions'),
+            ),
+
+            GetPropertyOptionsEvent::NAME                      => array(
+                array('createContentTypeOptions'),
+            ),
+
             // Message content related options
-            MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(array('createMessageContentCellOptions', 100)),
-            MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(array('createCellContentTypeOptions', -100)),
+            MessageEvents::CREATE_MESSAGE_CONTENT_CELL_OPTIONS => array(
+                array('createMessageContentCellOptions', 100),
+            ),
+            
+            MessageEvents::CREATE_MESSAGE_CONTENT_TYPE_OPTIONS => array(
+                array('createCellContentTypeOptions', -100),
+            ),
         );
     }
 
@@ -110,27 +122,29 @@ class OptionsBuilder implements EventSubscriberInterface
     }
 
     /**
-     * @param CreateOptionsEvent $event
+     * @param CreateOptionsEvent|GetPropertyOptionsEvent $event
+     * @param                                            $name
+     * @param EventDispatcher                            $eventDispatcher
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.ShortVariables)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function createContentTypeOptions(CreateOptionsEvent $event)
+    public function createContentTypeOptions(GetPropertyOptionsEvent $event, $name, EventDispatcher $eventDispatcher)
     {
-        /** @var DcCompat $dc */
-        $dc = $event->getDataContainer();
-        /** @var EntityModel $model */
-        $model = $dc->getModel();
-        /** @var Layout $layout */
-        $layout = $model->getEntity();
-
-        if (!$layout || $layout->getType() != 'mailChimp') {
+        if ($event->getModel()->getProviderName() !== 'orm_avisota_layout'
+            || $event->getPropertyName() !== 'allowedCellContents'
+        ) {
             return;
         }
 
-        $options = $event->getOptions();
+        $layout = $event->getModel()->getEntity();
+        if ($layout->getType() !== 'mailChimp') {
+            return;
+        }
 
-        $allTypes = $options->getArrayCopy();
-        $options->exchangeArray(array());
+        $allTypes = $event->getOptions();
+        $options  = array();
 
         list($group, $mailChimpTemplate) = explode(':', $layout->getMailchimpTemplate());
         if (isset($GLOBALS['AVISOTA_MAILCHIMP_TEMPLATE'][$group][$mailChimpTemplate])) {
@@ -151,7 +165,7 @@ class OptionsBuilder implements EventSubscriberInterface
             }
         }
 
-        $event->preventDefault();
+        $event->setOptions($options);
     }
 
     /**
