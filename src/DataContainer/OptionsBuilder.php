@@ -2,11 +2,11 @@
 
 /**
  * Avisota newsletter and mailing system
- * Copyright © 2016 Sven Baumann
+ * Copyright © 2017 Sven Baumann
  *
  * PHP version 5
  *
- * @copyright  way.vision 2016
+ * @copyright  way.vision 2017
  * @author     Sven Baumann <baumann.sv@gmail.com>
  * @package    avisota/contao-renderer-mailchimp
  * @license    LGPL-3.0+
@@ -18,7 +18,6 @@ namespace Avisota\Contao\Message\Renderer\MailChimp\DataContainer;
 use Avisota\Contao\Core\Event\CreateOptionsEvent;
 use Avisota\Contao\Entity\MessageContent;
 use Avisota\Contao\Message\Core\MessageEvents;
-use Contao\Doctrine\ORM\DataContainer\General\EntityModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
 use ContaoCommunityAlliance\DcGeneral\Contao\Compatibility\DcCompat;
@@ -198,9 +197,7 @@ class OptionsBuilder implements EventSubscriberInterface
     public function getMessageContentCellOptions($dc, $options = array(), CreateOptionsEvent $event = null)
     {
         if ($dc instanceof DcCompat) {
-            /** @var EntityModel $model */
             $model = $dc->getModel();
-            /** @var \Avisota\Contao\Entity\MessageContent $content */
             $content = $model->getEntity();
             $message = $content->getMessage();
             $layout  = $message->getLayout();
@@ -267,9 +264,7 @@ class OptionsBuilder implements EventSubscriberInterface
      */
     public function createCellContentTypeOptions(CreateOptionsEvent $event)
     {
-        /** @var DcCompat $dc */
         $dc = $event->getDataContainer();
-        /** @var EntityModel $model */
         $model  = $dc->getModel();
         $entity = $model->getEntity();
 
