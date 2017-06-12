@@ -2,11 +2,11 @@
 
 /**
  * Avisota newsletter and mailing system
- * Copyright © 2016 Sven Baumann
+ * Copyright © 2017 Sven Baumann
  *
  * PHP version 5
  *
- * @copyright  way.vision 2016
+ * @copyright  way.vision 2017
  * @author     Sven Baumann <baumann.sv@gmail.com>
  * @package    avisota/contao-renderer-mailchimp
  * @license    LGPL-3.0+
@@ -24,6 +24,7 @@ use Avisota\Contao\Message\Core\Event\RenderMessageHeadersEvent;
 use Avisota\Contao\Message\Core\Renderer\MessageRendererInterface;
 use Avisota\Contao\Message\Core\Template\MutablePreRenderedMessageTemplate;
 use Bit3\StringBuilder\StringBuilder;
+use Contao\StyleSheetModel;
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\Controller\ReplaceInsertTagsEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -287,6 +288,16 @@ class BlueprintRenderer implements MessageRendererInterface
             foreach ($stylesheets as $stylesheet) {
                 $file = new \File($stylesheet);
                 $css  = $file->getContent();
+                if (0 === strpos($file->path, 'assets/css/')) {
+                    $styleSheetModel = StyleSheetModel::findByName($file->filename);
+                    if (null !== $styleSheetModel && null !== $styleSheetModel->mediaQuery) {
+                        $css = sprintf(
+                            '%s { %s }',
+                            $styleSheetModel->mediaQuery,
+                            $css
+                        );
+                    }
+                }
                 $styles
                     ->append($css)
                     ->append("\n");
