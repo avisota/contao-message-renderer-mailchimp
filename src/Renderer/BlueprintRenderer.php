@@ -290,7 +290,7 @@ class BlueprintRenderer implements MessageRendererInterface
                 $css  = $file->getContent();
                 if (0 === strpos($file->path, 'assets/css/')) {
                     $styleSheetModel = StyleSheetModel::findByName($file->filename);
-                    if (null !== $styleSheetModel && null !== $styleSheetModel->mediaQuery) {
+                    if (null !== $styleSheetModel && null !== $styleSheetModel->mediaQuery && !empty($styleSheetModel->mediaQuery)) {
                         $css = sprintf(
                             '%s { %s }',
                             $styleSheetModel->mediaQuery,
