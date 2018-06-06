@@ -37,8 +37,6 @@
     "require-dev": {
         "phpcq/all-tasks": "^1.2"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Avisota\\Contao\\Message\\Renderer\\MailChimp\\": "src/"
