@@ -2,12 +2,13 @@
 
 /**
  * Avisota newsletter and mailing system
- * Copyright © 2017 Sven Baumann
+ * Copyright © 2018 Sven Baumann
  *
  * PHP version 5
  *
- * @copyright  way.vision 2017
+ * @copyright  way.vision 2018
  * @author     Sven Baumann <baumann.sv@gmail.com>
+ * @author     theDyingMountain <mario_gates@ymail.com>
  * @package    avisota/contao-renderer-mailchimp
  * @license    LGPL-3.0+
  * @filesource
@@ -290,7 +291,10 @@ class BlueprintRenderer implements MessageRendererInterface
                 $css  = $file->getContent();
                 if (0 === strpos($file->path, 'assets/css/')) {
                     $styleSheetModel = StyleSheetModel::findByName($file->filename);
-                    if (null !== $styleSheetModel && null !== $styleSheetModel->mediaQuery) {
+                    if (null !== $styleSheetModel
+                        && null !== $styleSheetModel->mediaQuery
+                        && !empty($styleSheetModel->mediaQuery)
+                    ) {
                         $css = sprintf(
                             '%s { %s }',
                             $styleSheetModel->mediaQuery,
